@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.LoginPage"
+             BackgroundColor="#1C2526">
+    <ContentPage.Content>
+        <StackLayout Padding="20" VerticalOptions="CenterAndExpand" Spacing="20">
+
+            <!-- Siren Icon -->
+            <Image Source="siren.png" 
+                   HeightRequest="80" 
+                   WidthRequest="80" 
+                   HorizontalOptions="Center" />
+
+            <!-- App Name and Tagline -->
+            <Label Text="Resident's Portal"
+                   FontSize="36"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="White"/>
+
+            <!-- EMAIL ENTRY WITH ICON -->
+            <StackLayout Spacing="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="gmail.png" 
+                           WidthRequest="24"
+                           HeightRequest="24"
+                           VerticalOptions="Center"
+                           Margin="0,0,10,0"
+                           Grid.Column="0"/>
+
+                    <Entry x:Name="emailEntry"
+                           Placeholder="Enter your Email"
+                           PlaceholderColor="#808080"
+                           TextColor="White"
+                           BackgroundColor="Transparent"
+                           Keyboard="Email"
+                           Grid.Column="1"/>
+                </Grid>
+                <BoxView HeightRequest="1" 
+                         BackgroundColor="#808080" 
+                         HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+
+            <!-- PASSWORD ENTRY WITH ICON AND SHOW/HIDE -->
+            <StackLayout Spacing="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="lock.png" 
+                           WidthRequest="24"
+                           HeightRequest="24"
+                           VerticalOptions="Center"
+                           Margin="0,0,10,0"
+                           Grid.Column="0"/>
+
+                    <Entry x:Name="passwordEntry"
+                           Placeholder="Enter your Password"
+                           PlaceholderColor="#808080"
+                           TextColor="White"
+                           BackgroundColor="Transparent"
+                           IsPassword="True"
+                           Grid.Column="1"/>
+
+                    <!-- SHOW/HIDE PASSWORD BUTTON -->
+                    <ImageButton x:Name="togglePasswordButton"
+                                 Source="eye.png"
+                                 WidthRequest="24"
+                                 HeightRequest="24"
+                                 BackgroundColor="Transparent"
+                                 VerticalOptions="Center"
+                                 Grid.Column="2"
+                                 Clicked="TogglePasswordVisibility"/>
+                </Grid>
+                <BoxView HeightRequest="1" 
+                         BackgroundColor="#808080" 
+                         HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+
+            <!-- BUTTONS SECTION -->
+            <Grid ColumnSpacing="10" RowSpacing="10" Margin="0,20,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Text="Log In" 
+                        TextColor="White" 
+                        BackgroundColor="#E53935" 
+                        HeightRequest="50" 
+                        CornerRadius="25" 
+                        FontSize="16" 
+                        FontAttributes="Bold"
+                        Grid.Row="0" 
+                        Grid.Column="0"
+                        Clicked="ToResidentPage"/>
+
+                <Button Text="Authorities" 
+                        TextColor="White" 
+                        BackgroundColor="#E53935"
+                        HeightRequest="50" 
+                        CornerRadius="25" 
+                        FontSize="16" 
+                        FontAttributes="Bold"
+                        Grid.Row="0" 
+                        Grid.Column="1"
+                        Clicked="ToLGUloginform"/>
+
+                <Button Text="ADMIN" 
+                        TextColor="White" 
+                        BackgroundColor="#E53935"
+                        HeightRequest="50" 
+                        CornerRadius="25" 
+                        FontSize="16" 
+                        FontAttributes="Bold"
+                        Grid.Row="1" 
+                        Grid.Column="0"
+                        Clicked="ToAdminLoginForm"/>
+
+                <Button Text="Exit" 
+                        TextColor="White" 
+                        BackgroundColor="#E53935"
+                        HeightRequest="50" 
+                        CornerRadius="25" 
+                        FontSize="16" 
+                        FontAttributes="Bold"
+                        Grid.Row="1" 
+                        Grid.Column="1" 
+                        Clicked="ToExitApp"/>
+            </Grid>
+
+            <!-- REGISTER AND FORGOT PASSWORD LINKS -->
+            <Label HorizontalOptions="Center" Margin="0,10,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="No Account? " TextColor="#B0B0B0" FontSize="14"/>
+                        <Span Text="Register now" TextColor="#E53935" FontSize="14"/>
+                    </FormattedString>
+                </Label.FormattedText>
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ToRegistrationPage" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label Text="Forgot password" 
+                   FontSize="14" 
+                   TextColor="#B0B0B0" 
+                   HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

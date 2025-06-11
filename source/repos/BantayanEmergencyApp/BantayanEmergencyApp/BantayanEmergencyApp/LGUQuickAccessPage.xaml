@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.LGUQuickAccessPage"
+             Title="Quick Access"
+             BackgroundColor="#0D1B2A">
+
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Spacing="30">
+        <Label Text="Quick Emergency Access" FontSize="24" TextColor="White" HorizontalTextAlignment="Center" />
+
+        <ImageButton Source="emergency_button.png"
+                     WidthRequest="250"
+                     HeightRequest="250"
+                     BackgroundColor="Transparent"
+                     Clicked="OnEmergencyButtonClicked" />
+
+        <Label Text="Tap the icon above to send an emergency report"
+               FontSize="16"
+               TextColor="White"
+               HorizontalTextAlignment="Center" />
+    </StackLayout>
+</ContentPage>

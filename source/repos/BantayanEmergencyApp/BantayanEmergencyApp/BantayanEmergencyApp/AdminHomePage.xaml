@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.AdminHomePage"
+             Title="Admin Dashboard"
+             BackgroundColor="#1B1B1B">
+
+    <Grid>
+        <StackLayout Padding="20" Spacing="15">
+
+            <!-- ADMIN PROFILE HEADER -->
+            <Frame BackgroundColor="White" Padding="20" CornerRadius="20" HasShadow="True">
+                <StackLayout HorizontalOptions="Center" Spacing="10">
+                    <Image Source="admin1.png" HeightRequest="50" WidthRequest="50" />
+                    <Label Text="Welcome, Admin!" FontSize="26" FontAttributes="Bold" TextColor="#263238" HorizontalOptions="Center"/>
+                </StackLayout>
+            </Frame>
+
+            <ScrollView>
+                <!-- STATISTICS OVERVIEW -->
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- PENDING USERS -->
+                    <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="White" Padding="15" CornerRadius="15" HasShadow="True" Margin="5">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnPendingUsersTapped"/>
+                        </Frame.GestureRecognizers>
+                        <StackLayout HorizontalOptions="Center">
+                            <Label Text="🕒" FontSize="40" HorizontalOptions="Center"/>
+                            <Label Text="Pending Users" FontSize="16" TextColor="#263238" HorizontalOptions="Center"/>
+                            <Label x:Name="lblPendingCount" Text="0" FontSize="22" FontAttributes="Bold" TextColor="#0288D1" HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- APPROVED USERS -->
+                    <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="White" Padding="15" CornerRadius="15" HasShadow="True" Margin="5">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnApprovedUsersTapped"/>
+                        </Frame.GestureRecognizers>
+                        <StackLayout HorizontalOptions="Center">
+                            <Label Text="✅" FontSize="40" HorizontalOptions="Center"/>
+                            <Label Text="Approved Users" FontSize="16" TextColor="#263238" HorizontalOptions="Center"/>
+                            <Label x:Name="lblApprovedCount" Text="0" FontSize="22" FontAttributes="Bold" TextColor="#4CAF50" HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- REJECTED USERS -->
+                    <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="White" Padding="15" CornerRadius="15" HasShadow="True" Margin="5">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnRejectedUsersTapped"/>
+                        </Frame.GestureRecognizers>
+                        <StackLayout HorizontalOptions="Center">
+                            <Label Text="❌" FontSize="40" HorizontalOptions="Center"/>
+                            <Label Text="Rejected Users" FontSize="16" TextColor="#263238" HorizontalOptions="Center"/>
+                            <Label x:Name="lblRejectedCount" Text="0" FontSize="22" FontAttributes="Bold" TextColor="#D32F2F" HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- EMERGENCY REPORTS -->
+                    <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="White" Padding="15" CornerRadius="15" HasShadow="True" Margin="5">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnEmergencyReportsTapped"/>
+                        </Frame.GestureRecognizers>
+                        <StackLayout HorizontalOptions="Center">
+                            <Label Text="🚨" FontSize="40" HorizontalOptions="Center"/>
+                            <Label Text="Emergency Reports" FontSize="16" TextColor="#263238" HorizontalOptions="Center"/>
+                            <Label x:Name="lblEmergencyReports" Text="0" FontSize="22" FontAttributes="Bold" TextColor="#FF9800" HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- BANNED USERS -->
+                    <Frame Grid.Row="2" Grid.Column="0" BackgroundColor="White" Padding="15" CornerRadius="15" HasShadow="True" Margin="5">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBannedUsersTapped"/>
+                        </Frame.GestureRecognizers>
+                        <StackLayout HorizontalOptions="Center">
+                            <Label Text="🚫" FontSize="40" HorizontalOptions="Center"/>
+                            <Label Text="Banned Users" FontSize="16" TextColor="#263238" HorizontalOptions="Center"/>
+                            <Label x:Name="lblBannedUsers" Text="0" FontSize="22" FontAttributes="Bold" TextColor="#9C27B0" HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- PENDING CONTACT NUMBERS -->
+                    <Frame Grid.Row="2" Grid.Column="1" BackgroundColor="White" Padding="15" CornerRadius="15" HasShadow="True" Margin="5">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnContactUsersTapped"/>
+                        </Frame.GestureRecognizers>
+                        <StackLayout HorizontalOptions="Center">
+                            <Label Text="📞" FontSize="40" HorizontalOptions="Center"/>
+                            <Label Text="Pending Contact Numbers" FontSize="16" TextColor="#263238" HorizontalOptions="Center"/>
+                            <Label x:Name="lblPendingContactChanges" Text="0" FontSize="22" FontAttributes="Bold" TextColor="#9C27B0" HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+
+                </Grid>
+            </ScrollView>
+        </StackLayout>
+    </Grid>
+</ContentPage>

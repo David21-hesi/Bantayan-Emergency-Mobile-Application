@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:BantayanEmergencyApp.Converterss"
+             xmlns:local="clr-namespace:BantayanEmergencyApp"
+             x:Class="BantayanEmergencyApp.ResidentsReportpage"
+             Title="My Emergency Reports"
+             BackgroundColor="#0D1B2A">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StatusToVisibilityConverter x:Key="StatusToVisibilityConverter"/>
+            <local:StringToBoolConverter x:Key="StringToBoolConverter" />
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#1B263B" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BorderColor" Value="#FF3B30" />
+                <Setter Property="Padding" Value="15" />
+            </Style>
+            <Style x:Key="LabelHeaderStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#FFFFFF" />
+            </Style>
+            <Style x:Key="LabelSecondaryStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="#A6B1C9" />
+            </Style>
+            <Style x:Key="SearchBarStyle" TargetType="SearchBar">
+                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="PlaceholderColor" Value="#A6B1C9" />
+                <Setter Property="BackgroundColor" Value="#1B263B" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HeightRequest" Value="48" />
+            </Style>
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="44" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <!-- Header Section -->
+        <StackLayout Padding="20,40,20,10" BackgroundColor="#0D1B2A" Spacing="8">
+            <Frame Style="{StaticResource FrameStyle}">
+                <Grid HeightRequest="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <ImageButton Source="back.png"
+                                 HeightRequest="24"
+                                 WidthRequest="24"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnBackButtonClicked"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Start" />
+                    <Label Text="My Emergency Reports"
+                           Grid.Column="1"
+                           Style="{StaticResource LabelHeaderStyle}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+                </Grid>
+            </Frame>
+            <Label Text="Track your submitted reports"
+                   Style="{StaticResource LabelSecondaryStyle}"
+                   HorizontalOptions="Center" />
+            <Frame Margin="0,10,0,0" CornerRadius="10" Padding="0" HasShadow="True" BackgroundColor="#1B263B" BorderColor="#FF3B30">
+                <SearchBar x:Name="searchBar"
+                           Style="{StaticResource SearchBarStyle}"
+                           Placeholder="Search reports..."
+                           TextChanged="OnSearchTextChanged" />
+            </Frame>
+        </StackLayout>
+
+        <!-- Scrollable Reports List -->
+        <ScrollView>
+            <ListView x:Name="reportsListView"
+                      HasUnevenRows="True"
+                      BackgroundColor="#0D1B2A"
+                      SeparatorVisibility="None"
+                      ItemsSource="{Binding FilteredReports}"
+                      Margin="10,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Margin="0,8"
+                                   Padding="15"
+                                   CornerRadius="16"
+                                   BackgroundColor="#1B263B"
+                                   HasShadow="True"
+                                   BorderColor="#FF3B30">
+                                <StackLayout Spacing="10">
+                                    <!-- Header with Status -->
+                                    <Grid>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ToggleExpandCommand}" />
+                                        </Grid.GestureRecognizers>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <!-- Incident Info -->
+                                        <StackLayout Grid.Column="0" Spacing="6">
+                                            <Label Text="{Binding IncidentType}"
+                                                   FontSize="18"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#FFFFFF" />
+                                            <Label Text="{Binding Location}"
+                                                   Style="{StaticResource LabelSecondaryStyle}" />
+                                        </StackLayout>
+                                        <!-- Status Badge -->
+                                        <Frame Grid.Column="1"
+                                               Padding="8,4"
+                                               CornerRadius="10"
+                                               BackgroundColor="{Binding StatusColor}"
+                                               VerticalOptions="Center">
+                                            <Label Text="{Binding Status}"
+                                                   FontSize="12"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#FFFFFF" />
+                                        </Frame>
+                                    </Grid>
+
+                                    <!-- Expandable Details -->
+                                    <StackLayout IsVisible="{Binding IsExpanded}" Spacing="8">
+                                        <Label Text="{Binding Description}"
+                                               Style="{StaticResource LabelSecondaryStyle}"
+                                               LineBreakMode="WordWrap" />
+                                        <Label Text="{Binding Timestamp, StringFormat='Reported: {0:MMMM dd, yyyy hh:mm tt}'}"
+                                               FontSize="13"
+                                               TextColor="#A6B1C9"
+                                               FontAttributes="Italic" />
+                                        <Label Text="{Binding ReportReason}" 
+                                               FontSize="14"
+                                               TextColor="Red"
+                                               FontAttributes="Italic"
+                                               IsVisible="{Binding Status, Converter={StaticResource StatusToVisibilityConverter}}"/>
+                                        <Frame Padding="4"
+                                               Margin="0,8"
+                                               CornerRadius="12"
+                                               BackgroundColor="#1B263B"
+                                               BorderColor="#FF3B30"
+                                               IsVisible="{Binding ImageUrl, Converter={StaticResource StringToBoolConverter}}">
+                                            <Image Source="{Binding ImageUrl}"
+                                                   HeightRequest="200"
+                                                   Aspect="AspectFill"
+                                                   HorizontalOptions="FillAndExpand">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnImageTapped"
+                                                                          CommandParameter="{Binding ImageUrl}" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Frame>
+                                        <!-- Edit and Delete Buttons -->
+                                        <Grid ColumnSpacing="15" Padding="0,10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Button Text="Edit Report"
+                                                    BackgroundColor="#3B82F6"
+                                                    Style="{StaticResource ButtonStyle}"
+                                                    CommandParameter="{Binding .}"
+                                                    Clicked="ToEditResidentReportPage"
+                                                    Grid.Column="0" />
+                                            <Button Text="Delete"
+                                                    BackgroundColor="#FF3B30"
+                                                    Style="{StaticResource ButtonStyle}"
+                                                    CommandParameter="{Binding .}"
+                                                    Clicked="OnDeleteReportClicked"
+                                                    Grid.Column="1" />
+                                        </Grid>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

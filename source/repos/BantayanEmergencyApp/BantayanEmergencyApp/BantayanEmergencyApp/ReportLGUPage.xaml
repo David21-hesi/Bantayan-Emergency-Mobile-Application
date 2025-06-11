@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:BantayanEmergencyApp.Converterss"
+             x:Class="BantayanEmergencyApp.ReportLGUPage"
+             Title="Emergency Reports"
+             BackgroundColor="#0D1B2A">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StatusToVisibilityConverter x:Key="StatusToVisibilityConverter"/>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#1B263B" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BorderColor" Value="#FF3B30" />
+                <Setter Property="Padding" Value="15" />
+            </Style>
+            <Style x:Key="LabelHeaderStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#FFFFFF" />
+            </Style>
+            <Style x:Key="LabelSecondaryStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="#A6B1C9" />
+            </Style>
+            <Style x:Key="SearchBarStyle" TargetType="SearchBar">
+                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="PlaceholderColor" Value="#A6B1C9" />
+                <Setter Property="BackgroundColor" Value="#1B263B" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HeightRequest" Value="48" />
+            </Style>
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="44" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <!-- Header Section -->
+        <StackLayout Padding="20,20,20,10" BackgroundColor="#0D1B2A">
+            <Frame Style="{StaticResource FrameStyle}">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Image Source="siren.png" HeightRequest="24" WidthRequest="24" VerticalOptions="Center" />
+                    <Label Text="Emergency Reports" Style="{StaticResource LabelHeaderStyle}" VerticalOptions="Center" Margin="8,0,0,0" />
+                </StackLayout>
+            </Frame>
+            <Label Text="Real-time emergency submissions" Style="{StaticResource LabelSecondaryStyle}" HorizontalOptions="Center" Margin="0,8,0,0" />
+        </StackLayout>
+
+        <!-- Search Bar -->
+        <Frame Margin="20,10,20,15" CornerRadius="10" Padding="0" HasShadow="True" BackgroundColor="#1B263B" BorderColor="#FF3B30">
+            <SearchBar x:Name="reportSearchBar"
+                       Style="{StaticResource SearchBarStyle}"
+                       Placeholder="Search by name or incident..."
+                       SearchCommand="{Binding SearchCommand}"
+                       TextChanged="OnSearchTextChanged" />
+        </Frame>
+
+        <!-- Reports List -->
+        <ScrollView>
+            <ListView x:Name="reportsLGUListView"
+                      HasUnevenRows="True"
+                      BackgroundColor="Transparent"
+                      SeparatorVisibility="None"
+                      ItemsSource="{Binding FilteredReportsList}"
+                      Margin="10,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="15"
+                                   Margin="10,8"
+                                   CornerRadius="12"
+                                   HasShadow="True"
+                                   BackgroundColor="#1B263B"
+                                   BorderColor="#FF3B30">
+                                <StackLayout Spacing="10">
+                                    <!-- Clickable Header -->
+                                    <Grid ColumnSpacing="10" Padding="0,0,0,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ToggleExpandCommand}" />
+                                        </Grid.GestureRecognizers>
+                                        <StackLayout Grid.Column="0" VerticalOptions="Center" Spacing="4">
+                                            <Label Text="{Binding FullName}" FontSize="18" FontAttributes="Bold" TextColor="#FFFFFF" />
+                                            <Label Text="{Binding ContactNumber}" Style="{StaticResource LabelSecondaryStyle}" />
+                                            <Label Text="{Binding UserType}" Style="{StaticResource LabelSecondaryStyle}" />
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="1" Spacing="8" VerticalOptions="Center" HorizontalOptions="End">
+                                            <Frame Padding="8,4"
+                                                   CornerRadius="10"
+                                                   BackgroundColor="{Binding StatusColor}"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="End">
+                                                <Label Text="{Binding Status}"
+                                                       FontSize="12"
+                                                       FontAttributes="Bold"
+                                                       TextColor="#FFFFFF" />
+                                            </Frame>
+                                            <ImageButton Source="delete.png"
+                                                         HeightRequest="24"
+                                                         WidthRequest="24"
+                                                         VerticalOptions="Center"
+                                                         HorizontalOptions="End"
+                                                         BackgroundColor="Transparent"
+                                                         CommandParameter="{Binding ReportId}"
+                                                         Clicked="OnDeleteClicked" />
+                                        </StackLayout>
+                                    </Grid>
+
+                                    <!-- Expandable Incident Details -->
+                                    <StackLayout IsVisible="{Binding IsExpanded}" Spacing="12">
+                                        <Frame BackgroundColor="#0D1B2A"
+                                               CornerRadius="10"
+                                               Padding="12"
+                                               BorderColor="#FF3B30">
+                                            <StackLayout Spacing="6">
+                                                <Label Text="{Binding IncidentType}"
+                                                       FontSize="18"
+                                                       FontAttributes="Bold"
+                                                       TextColor="#FF3B30" />
+                                                <Label Text="{Binding Location}"
+                                                       FontSize="14"
+                                                       TextColor="#FFFFFF" />
+                                                <Label Text="{Binding Description}"
+                                                       FontSize="14"
+                                                       TextColor="#A6B1C9" />
+                                                <Label Text="{Binding Timestamp, StringFormat='Reported: {0:MMMM dd, yyyy h:mmtt}'}"
+                                                       FontSize="12"
+                                                       TextColor="#A6B1C9" />
+                                                <!-- Report Reason (Only visible when status is Reported) -->
+                                                <Label Text="{Binding ReportReason}" 
+                                               FontSize="14"
+                                               TextColor="Red"
+                                               FontAttributes="Italic"
+                                               IsVisible="{Binding Status, Converter={StaticResource StatusToVisibilityConverter}}"/>
+                                            </StackLayout>
+                                        </Frame>
+
+                                        <!-- Incident Image -->
+                                        <Frame Padding="4"
+                                               Margin="0,8"
+                                               CornerRadius="12"
+                                               BackgroundColor="#1B263B"
+                                               BorderColor="#FF3B30">
+                                            <Image x:Name="IncidentImage"
+                                                   Source="{Binding ImageUrl}"
+                                                   HeightRequest="180"
+                                                   Aspect="AspectFill">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnImageTapped"
+                                                                         CommandParameter="{Binding ImageUrl}" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Frame>
+                                    </StackLayout>
+
+                                    <!-- Always-visible Action Buttons (Initially Hidden) -->
+                                    <Grid ColumnSpacing="15" RowSpacing="10" Margin="0,8,0,0" IsVisible="{Binding IsExpanded}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <Button Grid.Row="0" Grid.Column="0"
+                                                Text="Acknowledge"
+                                                BackgroundColor="#F59E0B"
+                                                Style="{StaticResource ButtonStyle}"
+                                                CommandParameter="{Binding ReportId}"
+                                                Clicked="OnAcknowledgeClicked"
+                                                IsEnabled="{Binding CanAcknowledge}" />
+
+                                        <Button Grid.Row="0" Grid.Column="1"
+                                                Text="In Progress"
+                                                BackgroundColor="#3B82F6"
+                                                Style="{StaticResource ButtonStyle}"
+                                                CommandParameter="{Binding ReportId}"
+                                                Clicked="OnInProgressClicked"
+                                                IsEnabled="{Binding CanInProgress}" />
+
+                                        <Button Grid.Row="1" Grid.Column="0"
+                                                Text="Resolved"
+                                                BackgroundColor="#10B981"
+                                                Style="{StaticResource ButtonStyle}"
+                                                CommandParameter="{Binding ReportId}"
+                                                Clicked="OnResolvedClicked"
+                                                IsEnabled="{Binding CanResolve}" />
+
+                                        <Button Grid.Row="1" Grid.Column="1"
+                                                Text="Call"
+                                                BackgroundColor="#6B7280"
+                                                Style="{StaticResource ButtonStyle}"
+                                                CommandParameter="{Binding ContactNumber}"
+                                                Clicked="OnCallClicked" />
+
+                                        <Button Grid.Row="2" Grid.ColumnSpan="2"
+                                                Text="Report"
+                                                BackgroundColor="Red"
+                                                TextColor="White"
+                                                Style="{StaticResource ButtonStyle}"
+                                                CommandParameter="{Binding ReportId}"
+                                                Clicked="OnReportedClicked"
+                                                IsVisible="{Binding CanReport}" />
+                                    </Grid>
+
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

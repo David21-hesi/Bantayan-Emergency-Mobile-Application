@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.RegistrationPage"
+             BackgroundColor="#1C2526">
+    <ContentPage.Content>
+        <!-- Gradient Background -->
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout Padding="30,40,30,20" Spacing="20" VerticalOptions="CenterAndExpand">
+
+                    <!-- Header -->
+                    <Label Text="REGISTER"
+                           FontSize="36"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           TextColor="White"
+                           Margin="0,0,0,20"/>
+
+                    <!-- Full Name -->
+                    <StackLayout Spacing="2">
+                        <Entry x:Name="fullnameEntry"
+                               Placeholder="Full Name"
+                               PlaceholderColor="#AAAAAA"
+                               TextColor="White"
+                               FontSize="16"
+                               BackgroundColor="Transparent"/>
+                        <BoxView HeightRequest="1" BackgroundColor="#E63946"/>
+                    </StackLayout>
+
+                    <!-- Email Address -->
+                    <StackLayout Spacing="2" Margin="0,10,0,0">
+                        <Entry x:Name="emailaddressEntry"
+                               Placeholder="Email Address"
+                               PlaceholderColor="#AAAAAA"
+                               TextColor="White"
+                               FontSize="16"
+                               Keyboard="Email"
+                               BackgroundColor="Transparent"/>
+                        <BoxView HeightRequest="1" BackgroundColor="#E63946"/>
+                    </StackLayout>
+
+                    <!-- Contact Number -->
+                    <StackLayout Spacing="2" Margin="0,10,0,0">
+                        <Entry x:Name="contactnumberEntry"
+                               Placeholder="Contact Number"
+                               PlaceholderColor="#AAAAAA"
+                               TextColor="White"
+                               FontSize="16"
+                               Keyboard="Telephone"
+                               BackgroundColor="Transparent"/>
+                        <BoxView HeightRequest="1" BackgroundColor="#E63946"/>
+                    </StackLayout>
+
+                    <!-- Address Picker -->
+                    <Picker x:Name="PickerAddress"
+                            Title="Select Address"
+                            TitleColor="#AAAAAA"
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            FontSize="16"
+                            Margin="0,10,0,0">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Atop-Atop</x:String>
+                                <x:String>Baigad</x:String>
+                                <x:String>Bantigue</x:String>
+                                <x:String>Baod</x:String>
+                                <x:String>Binaobao</x:String>
+                                <x:String>Botigues</x:String>
+                                <x:String>Doong</x:String>
+                                <x:String>Guiwanon</x:String>
+                                <x:String>Hilotongan</x:String>
+                                <x:String>Kabac</x:String>
+                                <x:String>Kabangbang</x:String>
+                                <x:String>Kampingganon</x:String>
+                                <x:String>Kangkaibe</x:String>
+                                <x:String>Lipayran</x:String>
+                                <x:String>LuyongBayBay</x:String>
+                                <x:String>Mojon</x:String>
+                                <x:String>Oboob</x:String>
+                                <x:String>Patao</x:String>
+                                <x:String>Putian</x:String>
+                                <x:String>Sillion</x:String>
+                                <x:String>Suba</x:String>
+                                <x:String>Sulangan</x:String>
+                                <x:String>Sungko</x:String>
+                                <x:String>Tamiao</x:String>
+                                <x:String>Ticad</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+
+                    <!-- Password Field -->
+                    <StackLayout Spacing="2" Margin="0,10,0,0">
+                        <Grid>
+                            <Entry x:Name="passwordEntry"
+                                   Placeholder="Password"
+                                   PlaceholderColor="#AAAAAA"
+                                   TextColor="White"
+                                   IsPassword="True"
+                                   FontSize="16"
+                                   BackgroundColor="Transparent"/>
+                            <ImageButton x:Name="togglePasswordButton"
+                                         Source="eye.png"
+                                         WidthRequest="24"
+                                         HeightRequest="24"
+                                         HorizontalOptions="End"
+                                         VerticalOptions="Center"
+                                         BackgroundColor="Transparent"
+                                         Clicked="TogglePasswordVisibility"/>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="#E63946"/>
+                    </StackLayout>
+
+                    <!-- Confirm Password Field -->
+                    <StackLayout Spacing="2" Margin="0,10,0,0">
+                        <Grid>
+                            <Entry x:Name="confirmpasswordEntry"
+                                   Placeholder="Confirm Password"
+                                   PlaceholderColor="#AAAAAA"
+                                   TextColor="White"
+                                   IsPassword="True"
+                                   FontSize="16"
+                                   BackgroundColor="Transparent"/>
+                            <ImageButton x:Name="toggleConfirmPasswordButton"
+                                         Source="eye.png"
+                                         WidthRequest="24"
+                                         HeightRequest="24"
+                                         HorizontalOptions="End"
+                                         VerticalOptions="Center"
+                                         BackgroundColor="Transparent"
+                                         Clicked="ToggleConfirmPasswordVisibility"/>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="#E63946"/>
+                    </StackLayout>
+
+                    <!-- User Type Picker -->
+                    <Picker x:Name="PickerUserType"
+                            Title="Select User Type"
+                            TitleColor="#AAAAAA"
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            FontSize="16"
+                            Margin="0,10,0,0">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Resident</x:String>
+                                <x:String>Police</x:String>
+                                <x:String>Fire Department</x:String>
+                                <x:String>Medical Team</x:String>
+                                <x:String>Banelco</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+
+                    <!-- Upload ID Section -->
+                    <StackLayout Spacing="10" Margin="0,20,0,20">
+                        <Label Text="Upload FRONT of Valid ID"
+                               FontSize="16"
+                               TextColor="#AAAAAA"
+                               HorizontalOptions="Center"/>
+                        <ImageButton x:Name="validIdImage"
+                                     Source="placeholder.png"
+                                     HeightRequest="200"
+                                     WidthRequest="400"
+                                     HorizontalOptions="Center"
+                                     Clicked="ToPickValidID"/>
+                    </StackLayout>
+
+                    <!-- Upload Back ID Section -->
+                    <StackLayout Spacing="10" Margin="0,10,0,20">
+                        <Label Text="Upload BACK of Valid ID"
+           FontSize="16"
+           TextColor="#AAAAAA"
+           HorizontalOptions="Center"/>
+                        <ImageButton x:Name="validIdBackImage"
+                 Source="placeholder.png"
+                 HeightRequest="200"
+                 WidthRequest="400"
+                 HorizontalOptions="Center"
+                 Clicked="ToPickValidIDBack"/>
+                    </StackLayout>
+
+                    <!-- Upload Back ID Section -->
+                    <StackLayout Spacing="10" Margin="0,10,0,20">
+                        <Label Text="Upload a Valid Barangay Indigency Certificate (Optional)"
+           FontSize="16"
+           TextColor="#AAAAAA"
+           HorizontalOptions="Center"/>
+                        <ImageButton x:Name="certificatePictureImage"
+                 Source="placeholder.png"
+                 HeightRequest="200"
+                 WidthRequest="400"
+                 HorizontalOptions="Center"
+                 Clicked="certificateImage_Clicked"/>
+                    </StackLayout>
+
+                    <!-- Upload Face Picture Section -->
+                    <StackLayout Spacing="10" Margin="0,20,0,20">
+                        <Label Text="Upload Face Picture for Validation"
+           FontSize="16"
+           TextColor="#AAAAAA"
+           HorizontalOptions="Center"/>
+                        <ImageButton x:Name="facePictureImage"
+                 Source="placeholder.png"
+                 HeightRequest="200"
+                 WidthRequest="400"
+                 HorizontalOptions="Center"
+                 Clicked="ToPickFacePicture"/>
+                    </StackLayout>
+
+                    <!-- Register Button -->
+                    <Button x:Name="buttonRegister"
+                            Text="Register"
+                            TextColor="White"
+                            BackgroundColor="#E63946"
+                            HeightRequest="50"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            CornerRadius="25"
+                            Margin="0,20,0,0"
+                            Clicked="buttonRegister_Clicked"/>
+
+                    <!-- Loading Indicator -->
+                    <ActivityIndicator x:Name="activityIndicator"
+                                       IsRunning="False"
+                                       IsVisible="False"
+                                       Color="#E63946"
+                                       HorizontalOptions="Center"/>
+                </StackLayout>
+            </ScrollView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

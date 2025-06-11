@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.Directorypage"
+             Title="Emergency Directory"
+             BackgroundColor="#0D1B2A">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#1B263B" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BorderColor" Value="#FF3B30" />
+                <Setter Property="Padding" Value="15" />
+            </Style>
+            <Style x:Key="LabelHeaderStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#FFFFFF" />
+            </Style>
+            <Style x:Key="ContactLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="#A6B1C9" />
+            </Style>
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="44" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20" BackgroundColor="#0D1B2A">
+            <!-- Header -->
+            <Frame Style="{StaticResource FrameStyle}">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Image Source="siren.png" HeightRequest="24" WidthRequest="24" VerticalOptions="Center" />
+                    <Label Text="Emergency Contacts"
+                           Style="{StaticResource LabelHeaderStyle}"
+                           VerticalOptions="Center"
+                           Margin="8,0,0,0" />
+                </StackLayout>
+            </Frame>
+
+            <!-- Contacts -->
+            <StackLayout Spacing="15">
+                <!-- Police -->
+                <Frame Style="{StaticResource FrameStyle}">
+                    <StackLayout Spacing="10">
+                        <Label Text="Police"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#FFFFFF" />
+                        <Label Text="0998 598 6377 / 0955 158 8153"
+                               Style="{StaticResource ContactLabelStyle}" />
+                        <Button Text="Call Police"
+                                BackgroundColor="#FF3B30"
+                                Style="{StaticResource ButtonStyle}"
+                                Clicked="CallPolice_Clicked" />
+                    </StackLayout>
+                </Frame>
+
+                <!-- Fire Department -->
+                <Frame Style="{StaticResource FrameStyle}">
+                    <StackLayout Spacing="10">
+                        <Label Text="Fire Department"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#FFFFFF" />
+                        <Label Text="0995 791 0021"
+                               Style="{StaticResource ContactLabelStyle}" />
+                        <Button Text="Call Fire Dept"
+                                BackgroundColor="#FF3B30"
+                                Style="{StaticResource ButtonStyle}"
+                                Clicked="CallFire_Clicked" />
+                    </StackLayout>
+                </Frame>
+
+                <!-- Medical -->
+                <Frame Style="{StaticResource FrameStyle}">
+                    <StackLayout Spacing="10">
+                        <Label Text="Medical"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#FFFFFF" />
+                        <Label Text="0942 464 7192 / 0927 447 5176"
+                               Style="{StaticResource ContactLabelStyle}" />
+                        <Button Text="Call Medical"
+                                BackgroundColor="#FF3B30"
+                                Style="{StaticResource ButtonStyle}"
+                                Clicked="CallMedical_Clicked" />
+                    </StackLayout>
+                </Frame>
+
+                <!-- Banelco -->
+                <Frame Style="{StaticResource FrameStyle}">
+                    <StackLayout Spacing="10">
+                        <Label Text="Banelco"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#FFFFFF" />
+                        <Label Text="0931 117 6126 / 0943 701 2696"
+                               Style="{StaticResource ContactLabelStyle}" />
+                        <Button Text="Call Banelco"
+                                BackgroundColor="#FF3B30"
+                                Style="{StaticResource ButtonStyle}"
+                                Clicked="CallBanelco_Clicked" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

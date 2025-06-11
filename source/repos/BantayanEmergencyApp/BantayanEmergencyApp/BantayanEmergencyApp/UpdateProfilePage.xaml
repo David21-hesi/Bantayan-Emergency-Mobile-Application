@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.UpdateProfilePage"
+             BackgroundColor="#0D0D0D">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="30" Spacing="20">
+
+                <Label Text="Update Profile"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="#E94560"/>
+
+                <Frame Padding="5" BackgroundColor="#1C1C1C" CornerRadius="10">
+                    <Entry x:Name="fullnameEntry" Placeholder="Full Name" TextColor="White" FontSize="16"/>
+                </Frame>
+
+                <Frame Padding="5" BackgroundColor="#1C1C1C" CornerRadius="10">
+                    <Entry x:Name="emailaddressEntry" Placeholder="Email" TextColor="Gray" FontSize="16" IsEnabled="False"/>
+                </Frame>
+
+                <Frame Padding="5" BackgroundColor="#1C1C1C" CornerRadius="10">
+                    <Entry x:Name="contactnumberEntry" Placeholder="Contact Number" Keyboard="Telephone" TextColor="White" FontSize="16"/>
+                </Frame>
+
+                <Frame Padding="5" BackgroundColor="#1C1C1C" CornerRadius="10">
+                    <Picker x:Name="PickerAddress" Title="Select Address" TitleColor="#CCCCCC" TextColor="White">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Atop-Atop</x:String>
+                                <x:String>Baigad</x:String>
+                                <x:String>Bantigue</x:String>
+                                <x:String>Baod</x:String>
+                                <x:String>Binaobao</x:String>
+                                <x:String>Botigues</x:String>
+                                <x:String>Doong</x:String>
+                                <x:String>Guiwanon</x:String>
+                                <x:String>Hilotongan</x:String>
+                                <x:String>Kabac</x:String>
+                                <x:String>Kabangbang</x:String>
+                                <x:String>Kampingganon</x:String>
+                                <x:String>Kangkaibe</x:String>
+                                <x:String>Lipayran</x:String>
+                                <x:String>LuyongBayBay</x:String>
+                                <x:String>Mojon</x:String>
+                                <x:String>Oboob</x:String>
+                                <x:String>Patao</x:String>
+                                <x:String>Putian</x:String>
+                                <x:String>Sillion</x:String>
+                                <x:String>Suba</x:String>
+                                <x:String>Sulangan</x:String>
+                                <x:String>Sungko</x:String>
+                                <x:String>Tamiao</x:String>
+                                <x:String>Ticad</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </Frame>
+
+                <Frame Padding="5" BackgroundColor="#1C1C1C" CornerRadius="10">
+                    <Picker x:Name="PickerUserType" Title="Select User Type" TitleColor="#CCCCCC" TextColor="White">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Resident</x:String>
+                                <x:String>Police</x:String>
+                                <x:String>Medical Team</x:String>
+                                <x:String>Fire Department</x:String>
+                                <x:String>Banelco</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </Frame>
+
+
+                <Frame Padding="10" BackgroundColor="#1C1C1C" CornerRadius="10" HorizontalOptions="Center">
+                    <StackLayout>
+                        <Label Text="Front of ID" TextColor="White" HorizontalOptions="Center"/>
+                    <ImageButton x:Name="validIdImage"
+                                 Source="placeholder.png"
+                                 HeightRequest="150"
+                                 WidthRequest="200"
+                                 BorderColor="#E94560"
+                                 BorderWidth="1"
+                                 CornerRadius="10"
+                                 Clicked="ToPickValidID"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Padding="10" BackgroundColor="#1C1C1C" CornerRadius="10" HorizontalOptions="Center">
+                    <StackLayout>
+                        <Label Text="Back of ID" TextColor="White" HorizontalOptions="Center"/>
+                        <ImageButton x:Name="validIdBackImage"
+                     Source="placeholder.png"
+                     HeightRequest="150"
+                     WidthRequest="200"
+                     BorderColor="#E94560"
+                     BorderWidth="1"
+                     CornerRadius="10"
+                     Clicked="ToPickValidIDBack"/>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Selfie Photo -->
+                <Frame Padding="10" BackgroundColor="#1C1C1C" CornerRadius="10" HorizontalOptions="Center">
+                    <StackLayout>
+                        <Label Text="Selfie with ID" TextColor="White" HorizontalOptions="Center"/>
+                        <ImageButton x:Name="facePhotoImage"
+                     Source="placeholder.png"
+                     HeightRequest="150"
+                     WidthRequest="200"
+                     BorderColor="#E94560"
+                     BorderWidth="1"
+                     CornerRadius="10"
+                     Clicked="ToPickFacePhoto"/>
+                    </StackLayout>
+                </Frame>
+
+                <Button Text="Save Changes"
+                        TextColor="White"
+                        BackgroundColor="#E94560"
+                        HeightRequest="50"
+                        FontAttributes="Bold"
+                        CornerRadius="10"
+                        Clicked="SaveProfileChanges"/>
+                <Button Text="Cancel"
+        TextColor="White"
+        BackgroundColor="Gray"
+        HeightRequest="50"
+        FontAttributes="Bold"
+        CornerRadius="10"
+        Clicked="CancelUpdate"/>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

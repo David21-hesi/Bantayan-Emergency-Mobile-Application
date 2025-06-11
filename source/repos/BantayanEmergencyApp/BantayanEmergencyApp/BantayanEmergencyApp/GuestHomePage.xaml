@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.GuestHomePage"
+             Title="Emergency Directory"
+             BackgroundColor="#F5F5F5">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="Padding" Value="15" />
+            </Style>
+            <Style x:Key="LabelHeaderStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#333333" />
+            </Style>
+            <Style x:Key="LabelSecondaryStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="#666666" />
+            </Style>
+            <Style x:Key="ContactLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="#666666" />
+            </Style>
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="44" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <!-- Row Definitions -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Fixed Top-Right Button -->
+        <Grid Grid.Row="0"
+              Padding="20,10"
+              BackgroundColor="#F5F5F5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button Text="Send Emergency Report"
+                    BackgroundColor="#EF4444"
+                    TextColor="White"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+                    Padding="10,5"
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    Clicked="Button_Clicked"/>
+        </Grid>
+
+        <!-- Scrollable Content Below -->
+        <ScrollView Grid.Row="1">
+            <StackLayout Padding="20" Spacing="20" BackgroundColor="#F5F5F5">
+                <!-- Welcoming Header -->
+                <Frame Style="{StaticResource FrameStyle}">
+                    <StackLayout Spacing="10">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                            <Image Source="siren.png" HeightRequest="28" WidthRequest="28" VerticalOptions="Center" />
+                            <Label Text="Welcome to Bantayan Emergency Services!"
+                                   Style="{StaticResource LabelHeaderStyle}"
+                                   VerticalOptions="Center"
+                                   Margin="8,0,0,0" />
+                        </StackLayout>
+                        <Label Text="Contact emergency services quickly and easily."
+                               Style="{StaticResource LabelSecondaryStyle}"
+                               HorizontalOptions="Center" />
+                    </StackLayout>
+                </Frame>
+
+                <!-- Contacts List -->
+                <StackLayout Spacing="15">
+                    <!-- Police -->
+                    <Frame Style="{StaticResource FrameStyle}" BorderColor="#FF3B30">
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="8">
+                                <Label Text="🚔"
+                                       FontSize="18"
+                                       VerticalOptions="Center" />
+                                <Label Text="Police"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="#FF3B30"
+                                       VerticalOptions="Center" />
+                            </StackLayout>
+                            <Label Text="0998 598 6377 / 0955 158 8153"
+                                   Style="{StaticResource ContactLabelStyle}" />
+                            <Button Text="Call Police"
+                                    BackgroundColor="#FF3B30"
+                                    Style="{StaticResource ButtonStyle}"
+                                    Clicked="CallPolice_Clicked" />
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Fire Department -->
+                    <Frame Style="{StaticResource FrameStyle}" BorderColor="#FF3B30">
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="8">
+                                <Label Text="🔥"
+                                       FontSize="18"
+                                       VerticalOptions="Center" />
+                                <Label Text="Fire Department"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="#FF3B30"
+                                       VerticalOptions="Center" />
+                            </StackLayout>
+                            <Label Text="0995 791 0021"
+                                   Style="{StaticResource ContactLabelStyle}" />
+                            <Button Text="Call Fire Dept"
+                                    BackgroundColor="#FF3B30"
+                                    Style="{StaticResource ButtonStyle}"
+                                    Clicked="CallFire_Clicked" />
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Medical -->
+                    <Frame Style="{StaticResource FrameStyle}" BorderColor="#FF3B30">
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="8">
+                                <Label Text="🚑"
+                                       FontSize="18"
+                                       VerticalOptions="Center" />
+                                <Label Text="Medical"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="#FF3B30"
+                                       VerticalOptions="Center" />
+                            </StackLayout>
+                            <Label Text="0942 464 7192 / 0927 447 5176"
+                                   Style="{StaticResource ContactLabelStyle}" />
+                            <Button Text="Call Medical"
+                                    BackgroundColor="#FF3B30"
+                                    Style="{StaticResource ButtonStyle}"
+                                    Clicked="CallMedical_Clicked" />
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Banelco -->
+                    <Frame Style="{StaticResource FrameStyle}" BorderColor="#FF3B30">
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="8">
+                                <Label Text="⚡"
+                                       FontSize="18"
+                                       VerticalOptions="Center" />
+                                <Label Text="Banelco"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="#FF3B30"
+                                       VerticalOptions="Center" />
+                            </StackLayout>
+                            <Label Text="0931 117 6126 / 0943 701 2696"
+                                   Style="{StaticResource ContactLabelStyle}" />
+                            <Button Text="Call Banelco"
+                                    BackgroundColor="#FF3B30"
+                                    Style="{StaticResource ButtonStyle}"
+                                    Clicked="CallBanelco_Clicked" />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

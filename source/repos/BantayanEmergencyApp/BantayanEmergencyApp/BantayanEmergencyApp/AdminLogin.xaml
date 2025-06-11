@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.AdminLogin"
+             BackgroundColor="#0D0D0D">
+
+    <ContentPage.Content>
+        <StackLayout Padding="30" VerticalOptions="CenterAndExpand" Spacing="25">
+
+            <!-- EMERGENCY ICON -->
+            <Frame BackgroundColor="Transparent" Padding="10" HasShadow="False" HorizontalOptions="Center">
+                <Image Source="manager.png" HeightRequest="120" WidthRequest="120"/>
+            </Frame>
+
+            <Label Text="Admin Portal"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#FF3D00"/>
+
+            <!-- EMAIL ENTRY -->
+            <Frame BackgroundColor="#1C1C1C"
+                   CornerRadius="10"
+                   Padding="10"
+                   Margin="0,10,0,0"
+                   HasShadow="True"
+                   HorizontalOptions="Center"
+                   WidthRequest="300">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="gmail.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center"/>
+                    <Entry x:Name="emailEntry"
+                           Placeholder="Enter your Email"
+                           PlaceholderColor="#808080"
+                           TextColor="White"
+                           BackgroundColor="Transparent"
+                           Keyboard="Email"
+                           WidthRequest="250"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- PASSWORD ENTRY WITH SHOW/HIDE -->
+            <Frame BackgroundColor="#1C1C1C"
+                   CornerRadius="10"
+                   Padding="10"
+                   HasShadow="True"
+                   HorizontalOptions="Center"
+                   WidthRequest="300">
+                <Grid>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="lock.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center"/>
+                        <Entry x:Name="passwordEntry"
+                               Placeholder="Enter your Password"
+                               PlaceholderColor="#808080"
+                               TextColor="White"
+                               BackgroundColor="Transparent"
+                               IsPassword="True"
+                               WidthRequest="250"/>
+                    </StackLayout>
+
+                    <!-- SHOW/HIDE PASSWORD BUTTON -->
+                    <ImageButton x:Name="togglePasswordButton"
+                                 Source="eye.png"
+                                 WidthRequest="28"
+                                 HeightRequest="28"
+                                 BackgroundColor="Transparent"
+                                 HorizontalOptions="End"
+                                 Clicked="TogglePasswordVisibility"/>
+                </Grid>
+            </Frame>
+
+            <!-- LOGIN BUTTON -->
+            <Button Text="Log In"
+                    TextColor="White"
+                    BackgroundColor="#E53935"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    Clicked="Button_Clicked"
+                    Opacity="0.9"
+                    BorderWidth="2"
+                    BorderColor="#FF3D00"
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

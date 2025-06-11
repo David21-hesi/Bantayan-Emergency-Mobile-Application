@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:BantayanEmergencyApp.Converterss"
+             x:Class="BantayanEmergencyApp.EmergencyReportsPage"
+             Title="Emergency Reports"
+             BackgroundColor="#121212">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StatusToVisibilityConverter x:Key="StatusToVisibilityConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <!-- Fixed Header Section -->
+        <StackLayout Padding="20,20,20,0">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Image Source="report.png" HeightRequest="30" WidthRequest="30"/>
+                <Label Text=" Emergency Reports" 
+                       FontSize="26" 
+                       FontAttributes="Bold"
+                       TextColor="White" 
+                       VerticalOptions="Center"/>
+            </StackLayout>
+
+            <Label Text="Below are the latest emergency reports submitted by users." 
+                   FontSize="16" 
+                   TextColor="Gray" 
+                   HorizontalOptions="Center" 
+                   Padding="0,10,0,20"/>
+        </StackLayout>
+
+        <!-- Search Bar -->
+        <SearchBar x:Name="searchBar"
+                   Placeholder="Search by name, type, or location..."
+                   TextColor="White"
+                   PlaceholderColor="Gray"
+                   BackgroundColor="#1E1E1E"
+                   TextChanged="OnSearchTextChanged"/>
+
+        <!-- Scrollable Reports List -->
+        <ScrollView>
+            <ListView x:Name="reportsListView" 
+                      HasUnevenRows="True" 
+                      BackgroundColor="Transparent"
+                      SeparatorVisibility="None" 
+                      ItemsSource="{Binding FilteredReportsList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="15" 
+                                   Margin="10" 
+                                   CornerRadius="15" 
+                                   HasShadow="True"
+                                   BackgroundColor="#1E1E1E">
+                                <StackLayout>
+                                    <!-- Collapsible Content -->
+                                    <StackLayout>
+                                        <!-- Clickable Header -->
+                                        <Grid ColumnSpacing="10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding ToggleExpandCommand}"/>
+                                            </Grid.GestureRecognizers>
+
+                                            <StackLayout Grid.Column="0" VerticalOptions="Center">
+                                                <Label Text="{Binding FullName}" 
+                                                       FontSize="18" 
+                                                       FontAttributes="Bold"
+                                                       TextColor="White"/>
+                                                <Label Text="{Binding ContactNumber}" 
+                                                       FontSize="14" 
+                                                       TextColor="Gray"/>
+                                                <Label Text="{Binding UserType}" 
+                                                       FontSize="14" 
+                                                       TextColor="Gray"/>
+                                            </StackLayout>
+
+                                            <Frame Grid.Column="1" 
+                                                   Padding="5,2" 
+                                                   CornerRadius="10"
+                                                   BackgroundColor="{Binding StatusColor}" 
+                                                   VerticalOptions="Center">
+                                                <Label Text="{Binding Status}" 
+                                                       FontSize="14" 
+                                                       FontAttributes="Bold"
+                                                       TextColor="White"/>
+                                            </Frame>
+
+                                            <!-- Delete Icon -->
+                                            <ImageButton Grid.Column="2"
+                                                         Source="delete.png"
+                                                         HeightRequest="24"
+                                                         WidthRequest="24"
+                                                         Command="{Binding DeleteCommand}"
+                                                         BackgroundColor="Transparent"/>
+                                        </Grid>
+
+                                        <!-- Expandable Details -->
+                                        <StackLayout IsVisible="{Binding IsExpanded}" 
+                                                     Spacing="10" 
+                                                     Padding="10,10,10,0">
+                                            <Label Text="{Binding IncidentType}" 
+                                                   FontSize="20" 
+                                                   FontAttributes="Bold"
+                                                   TextColor="White"/>
+                                            <Label Text="{Binding Location}" 
+                                                   FontSize="16" 
+                                                   TextColor="Gray"/>
+                                            <Label Text="{Binding Description}" 
+                                                   FontSize="14" 
+                                                   TextColor="LightGray"/>
+                                            <Label Text="{Binding Timestamp, StringFormat='🚨 {0:MMMM dd, yyyy hh:mm tt}'}" 
+                                                   FontSize="14" 
+                                                   TextColor="LightGray"/>
+                                            <!-- Report Reason (Only visible when status is Reported) -->
+                                            <Label Text="{Binding ReportReason}" 
+                                               FontSize="14"
+                                               TextColor="Red"
+                                               FontAttributes="Italic"
+                                               IsVisible="{Binding Status, Converter={StaticResource StatusToVisibilityConverter}}"/>
+
+                                            <!-- INCIDENT IMAGE -->
+                                            <Frame Padding="2" 
+                                                   Margin="0,10,0,0" 
+                                                   CornerRadius="10" 
+                                                   HasShadow="True"
+                                                   BackgroundColor="Black" 
+                                                   VerticalOptions="Center">
+                                                <Image Source="{Binding ImageUrl}" 
+                                                       HeightRequest="180"
+                                                       HorizontalOptions="FillAndExpand"
+                                                       Aspect="AspectFill">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="OnImageTapped" 
+                                CommandParameter="{Binding ImageUrl}"/>
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                            </Frame>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

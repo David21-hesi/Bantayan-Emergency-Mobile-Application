@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.LGUEditPage"
+             Title="Edit Emergency Report"
+             BackgroundColor="#0D1B2A">
+    <ContentPage.Resources>
+        <!-- Define reusable styles -->
+        <ResourceDictionary>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#1B263B" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BorderColor" Value="#FF3B30" />
+                <Setter Property="Padding" Value="15" />
+            </Style>
+            <Style x:Key="LabelHeaderStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#FFFFFF" />
+            </Style>
+            <Style x:Key="LabelSecondaryStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="#A6B1C9" />
+            </Style>
+            <Style x:Key="PickerStyle" TargetType="Picker">
+                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="TitleColor" Value="#A6B1C9" />
+                <Setter Property="BackgroundColor" Value="#1B263B" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HeightRequest" Value="48" />
+            </Style>
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="44" />
+            </Style>
+            <Style x:Key="EditorStyle" TargetType="Editor">
+                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="BackgroundColor" Value="#1B263B" />
+                <Setter Property="PlaceholderColor" Value="#A6B1C9" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HeightRequest" Value="140" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="20" BackgroundColor="#0D1B2A">
+                <!-- Header -->
+                <Frame Style="{StaticResource FrameStyle}">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Image Source="siren.png" HeightRequest="24" WidthRequest="24" VerticalOptions="Center" />
+                        <Label Text="Edit Emergency Report" Style="{StaticResource LabelHeaderStyle}" VerticalOptions="Center" Margin="8,0,0,0" />
+                    </StackLayout>
+                </Frame>
+
+                <!-- Authority Picker -->
+                <Frame Style="{StaticResource FrameStyle}">
+                    <StackLayout Spacing="10">
+                        <Label Text="Notify Authority" Style="{StaticResource LabelHeaderStyle}" />
+                        <Picker x:Name="authorityPicker"
+                                Style="{StaticResource PickerStyle}"
+                                Title="Select Authority">
+                            <Picker.Items>
+                                <x:String>Police</x:String>
+                                <x:String>Fire Department</x:String>
+                                <x:String>Medical Team</x:String>
+                                <x:String>Banelco</x:String>
+                                <x:String>All Authorities</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Incident Type Picker -->
+                <Frame Style="{StaticResource FrameStyle}">
+                    <StackLayout Spacing="10">
+                        <Label Text="Incident Type" Style="{StaticResource LabelHeaderStyle}" />
+                        <Picker x:Name="incidentPicker"
+                                Style="{StaticResource PickerStyle}"
+                                Title="Select Incident">
+                            <Picker.Items>
+                                <x:String>Fire</x:String>
+                                <x:String>Medical Emergency</x:String>
+                                <x:String>Crime</x:String>
+                                <x:String>Power Outage</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Location Picker -->
+                <Frame Style="{StaticResource FrameStyle}">
+                    <StackLayout Spacing="10">
+                        <Label Text="Incident Location" Style="{StaticResource LabelHeaderStyle}" />
+                        <Picker x:Name="locationPicker"
+                                Style="{StaticResource PickerStyle}"
+                                Title="Select Location">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Atop-Atop</x:String>
+                                    <x:String>Baigad</x:String>
+                                    <x:String>Bantigue</x:String>
+                                    <x:String>Baod</x:String>
+                                    <x:String>Binaobao</x:String>
+                                    <x:String>Botigues</x:String>
+                                    <x:String>Doong</x:String>
+                                    <x:String>Guiwanon</x:String>
+                                    <x:String>Hilotongan</x:String>
+                                    <x:String>Kabac</x:String>
+                                    <x:String>Kabangbang</x:String>
+                                    <x:String>Kampingganon</x:String>
+                                    <x:String>Kangkaibe</x:String>
+                                    <x:String>Lipayran</x:String>
+                                    <x:String>LuyongBayBay</x:String>
+                                    <x:String>Mojon</x:String>
+                                    <x:String>Oboob</x:String>
+                                    <x:String>Patao</x:String>
+                                    <x:String>Putian</x:String>
+                                    <x:String>Sillion</x:String>
+                                    <x:String>Suba</x:String>
+                                    <x:String>Sulangan</x:String>
+                                    <x:String>Sungko</x:String>
+                                    <x:String>Tamiao</x:String>
+                                    <x:String>Ticad</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Description Editor -->
+                <Frame Style="{StaticResource FrameStyle}">
+                    <StackLayout Spacing="10">
+                        <Label Text="Incident Details" Style="{StaticResource LabelHeaderStyle}" />
+                        <Editor x:Name="descriptionEditor"
+                                Placeholder="Provide critical details..."
+                                Style="{StaticResource EditorStyle}" />
+                    </StackLayout>
+                </Frame>
+
+                <!-- Image Display and Update -->
+                <Frame Style="{StaticResource FrameStyle}">
+                    <StackLayout Spacing="10">
+                        <Label Text="Emergency Evidence" Style="{StaticResource LabelHeaderStyle}" HorizontalOptions="Center" />
+                        <ImageButton x:Name="reportImage"
+                                     Source="placeholder.png"
+                                     HeightRequest="180"
+                                     WidthRequest="180"
+                                     CornerRadius="12"
+                                     HorizontalOptions="Center"
+                                     BackgroundColor="#1B263B"
+                                     BorderColor="#FF3B30"
+                                     BorderWidth="2"
+                                     Clicked="UpdateImageButton_Clicked" />
+                    </StackLayout>
+                </Frame>
+
+                <!-- Status (Read-only) -->
+                <Frame Style="{StaticResource FrameStyle}">
+                    <StackLayout Spacing="10">
+                        <Label Text="Status" Style="{StaticResource LabelHeaderStyle}" />
+                        <Label x:Name="statusLabel"
+                               Text="Awaiting Response"
+                               Style="{StaticResource LabelSecondaryStyle}" />
+                    </StackLayout>
+                </Frame>
+
+                <!-- Action Buttons -->
+                <Grid ColumnDefinitions="*,*">
+                    <Button Text="Save Changes"
+                            BackgroundColor="#F59E0B"
+                            Style="{StaticResource ButtonStyle}"
+                            Clicked="SaveReport_Clicked"
+                            Grid.Column="0"
+                            Margin="0,0,5,0" />
+                    <Button Text="Cancel"
+                            BackgroundColor="#3B82F6"
+                            Style="{StaticResource ButtonStyle}"
+                            Clicked="Cancel_Clicked"
+                            Grid.Column="1"
+                            Margin="5,0,0,0" />
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

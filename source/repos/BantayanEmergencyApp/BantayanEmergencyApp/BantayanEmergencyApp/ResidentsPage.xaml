@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="BantayanEmergencyApp.ResidentsPage"
+            Title="Resident Dashboard"
+            BarBackgroundColor="#B71C1C"
+            BarTextColor="#FFFFFF"
+            BackgroundColor="#ECEFF1">
+
+    <!-- Emergency Tab -->
+    <ContentPage Title="🚨 Emergency" BackgroundColor="#ECEFF1">
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="15">
+                <Frame BackgroundColor="#B71C1C" CornerRadius="10" Padding="15" HasShadow="True">
+                    <Label Text="SEND EMERGENCY ALERT" 
+                           FontSize="22" 
+                           FontAttributes="Bold" 
+                           TextColor="#FFFFFF" 
+                           HorizontalOptions="Center"/>
+                </Frame>
+                <!-- Adding Logout Button Here -->
+                <Button Text="Logout" 
+                        BackgroundColor="#B71C1C" 
+                        TextColor="#FFFFFF" 
+                        FontSize="18" 
+                        FontAttributes="Bold" 
+                        CornerRadius="10" 
+                        HeightRequest="50" 
+                        Margin="0,10,0,0" 
+                        Clicked="Logout_Clicked"/>
+                <Frame Padding="15" CornerRadius="8" BackgroundColor="#FFFFFF" HasShadow="True">
+                    <StackLayout Spacing="5">
+                        <Label Text="Notify Authority" FontSize="16" FontAttributes="Bold" TextColor="#212121"/>
+                        <Picker x:Name="AuthorityPicker" 
+                                Title="Select Authority" 
+                                FontSize="16" 
+                                TextColor="#212121" 
+                                TitleColor="#757575" 
+                                BackgroundColor="#FAFAFA">
+                            <Picker.Items>
+                                <x:String>Police</x:String>
+                                <x:String>Fire Department</x:String>
+                                <x:String>Medical Team</x:String>
+                                <x:String>Banelco</x:String>
+                                <x:String>All Authorities</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+                </Frame>
+                <Frame Padding="15" CornerRadius="8" BackgroundColor="#FFFFFF" HasShadow="True">
+                    <StackLayout Spacing="5">
+                        <Label Text="Incident Type" FontSize="16" FontAttributes="Bold" TextColor="#212121"/>
+                        <Picker x:Name="IncidentPicker" 
+                                Title="Select Incident" 
+                                FontSize="16" 
+                                TextColor="#212121" 
+                                TitleColor="#757575" 
+                                BackgroundColor="#FAFAFA">
+                            <Picker.Items>
+                                <x:String>Fire</x:String>
+                                <x:String>Medical Emergency</x:String>
+                                <x:String>Crime</x:String>
+                                <x:String>Power Outage</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+                </Frame>
+                <Frame Padding="15" CornerRadius="8" BackgroundColor="#FFFFFF" HasShadow="True">
+                    <StackLayout Spacing="5">
+                        <Label Text="Incident Location" FontSize="16" FontAttributes="Bold" TextColor="#212121"/>
+                        <Picker x:Name="LocationPicker" 
+                                Title="Select Location" 
+                                FontSize="16" 
+                                TextColor="#212121" 
+                                TitleColor="#757575" 
+                                BackgroundColor="#FAFAFA">
+                            <Picker.Items>
+                                <x:String>Atop-Atop</x:String>
+                                <x:String>Baigad</x:String>
+                                <x:String>Bantigue</x:String>
+                                <x:String>Baod</x:String>
+                                <x:String>Binaobao</x:String>
+                                <x:String>Botigues</x:String>
+                                <x:String>Doong</x:String>
+                                <x:String>Guiwanon</x:String>
+                                <x:String>Hilotongan</x:String>
+                                <x:String>Kabac</x:String>
+                                <x:String>Kabangbang</x:String>
+                                <x:String>Kampingganon</x:String>
+                                <x:String>Kangkaibe</x:String>
+                                <x:String>Lipayran</x:String>
+                                <x:String>LuyongBayBay</x:String>
+                                <x:String>Mojon</x:String>
+                                <x:String>Oboob</x:String>
+                                <x:String>Patao</x:String>
+                                <x:String>Putian</x:String>
+                                <x:String>Sillion</x:String>
+                                <x:String>Suba</x:String>
+                                <x:String>Sulangan</x:String>
+                                <x:String>Sungko</x:String>
+                                <x:String>Tamiao</x:String>
+                                <x:String>Ticad</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+                </Frame>
+                <Frame Padding="15" CornerRadius="8" BackgroundColor="#FFFFFF" HasShadow="True">
+                    <StackLayout Spacing="5">
+                        <Label Text="Incident Details" FontSize="16" FontAttributes="Bold" TextColor="#212121"/>
+                        <Editor x:Name="IncidentDescription" 
+                                Placeholder="Provide critical details..." 
+                                HeightRequest="120" 
+                                TextColor="#212121" 
+                                PlaceholderColor="#757575" 
+                                BackgroundColor="#FAFAFA"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Padding="15" CornerRadius="8" BackgroundColor="#FFFFFF" HasShadow="True">
+                    <StackLayout Spacing="5">
+                        <Label Text="Emergency Evidence" 
+                               FontSize="16" 
+                               FontAttributes="Bold" 
+                               TextColor="#B71C1C"/>
+                        <ImageButton x:Name="validIdImage" 
+                                     Source="camera.png" 
+                                     HeightRequest="150" 
+                                     WidthRequest="150" 
+                                     CornerRadius="8" 
+                                     BackgroundColor="#FAFAFA" 
+                                     Clicked="validIdImage_Clicked"/>
+                    </StackLayout>
+                </Frame>
+                <Button Text="🚨 SEND ALERT" 
+                        BackgroundColor="#B71C1C" 
+                        TextColor="#FFFFFF" 
+                        FontSize="18" 
+                        FontAttributes="Bold" 
+                        CornerRadius="10" 
+                        HeightRequest="50" 
+                        Margin="0,10,0,0" 
+                        Clicked="SubmitEmergencyReport"/>
+                <Button Text="📋 MY REPORTS" 
+                        BackgroundColor="#1976D2" 
+                        TextColor="#FFFFFF" 
+                        FontSize="18" 
+                        FontAttributes="Bold" 
+                        CornerRadius="10" 
+                        HeightRequest="50" 
+                        Clicked="ViewMyReports_Clicked"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage>
+
+    <!-- Directory Tab -->
+    <ContentPage Title="📞 Directory" IconImageSource="phone.png" BackgroundColor="#ECEFF1">
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="15">
+                <Frame BackgroundColor="#B71C1C" CornerRadius="10" Padding="15" HasShadow="True">
+                    <Label Text="EMERGENCY CONTACTS" 
+                           FontSize="22" 
+                           FontAttributes="Bold" 
+                           TextColor="#FFFFFF" 
+                           HorizontalOptions="Center"/>
+                </Frame>
+                <StackLayout Spacing="10">
+                    <Frame BackgroundColor="#FFFFFF" Padding="15" CornerRadius="8" HasShadow="True">
+                        <Label Text="🚔 Police: 911" FontSize="18" FontAttributes="Bold" TextColor="#212121"/>
+                    </Frame>
+                    <Frame BackgroundColor="#FFFFFF" Padding="15" CornerRadius="8" HasShadow="True">
+                        <Label Text="🔥 Fire Dept: 911" FontSize="18" FontAttributes="Bold" TextColor="#212121"/>
+                    </Frame>
+                    <Frame BackgroundColor="#FFFFFF" Padding="15" CornerRadius="8" HasShadow="True">
+                        <Label Text="🚑 Medical: 911" FontSize="18" FontAttributes="Bold" TextColor="#212121"/>
+                    </Frame>
+                    <Frame BackgroundColor="#FFFFFF" Padding="15" CornerRadius="8" HasShadow="True">
+                        <Label Text="⚡ Banelco: 911" FontSize="18" FontAttributes="Bold" TextColor="#212121"/>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage>
+
+    <!-- Updates Tab -->
+    <ContentPage Title="⚠️ Updates" IconImageSource="alert.png" BackgroundColor="#ECEFF1">
+        <StackLayout Padding="15" Spacing="10">
+            <Frame BackgroundColor="#B71C1C" CornerRadius="10" Padding="15" HasShadow="True">
+                <Label Text="🔴 REAL-TIME ALERTS" 
+                       FontSize="22" 
+                       FontAttributes="Bold" 
+                       TextColor="#FFFFFF" 
+                       HorizontalOptions="Center"/>
+            </Frame>
+            <ListView x:Name="NotificationsListView" 
+                      HasUnevenRows="True" 
+                      BackgroundColor="Transparent" 
+                      SeparatorColor="#B0BEC5">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="15" CornerRadius="8" Margin="0,5" BackgroundColor="#FFFFFF" HasShadow="True">
+                                <StackLayout>
+                                    <Label Text="{Binding Message}" 
+                                           FontSize="16" 
+                                           FontAttributes="Bold" 
+                                           TextColor="#212121"/>
+                                    <Label Text="{Binding Timestamp, StringFormat='Reported: {0:MMMM dd, yyyy h:mmtt}'}" 
+                                           FontSize="14" 
+                                           TextColor="#757575"/>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>

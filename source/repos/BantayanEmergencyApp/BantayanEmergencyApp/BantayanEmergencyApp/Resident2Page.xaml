@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="BantayanEmergencyApp.Resident2Page"
+            Title="Resident Dashboard"
+            FlyoutLayoutBehavior="Split">
+
+    <!-- Flyout Menu -->
+    <FlyoutPage.Flyout>
+        <ContentPage Title="Menu" BackgroundColor="#1B263B">
+            <StackLayout Padding="20" Spacing="15">
+                <!-- Profile Section -->
+                <StackLayout Spacing="10" HorizontalOptions="Center">
+                    <Frame BackgroundColor="#FFFFFF"
+                           BorderColor="#CCCCCC"
+                           HeightRequest="120"
+                           WidthRequest="120"
+                           CornerRadius="60"
+                           Padding="0"
+                           HasShadow="False"
+                           IsClippedToBounds="True"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center">
+                        <Grid>
+                            <Image x:Name="ProfileImage"
+                                   Source="user.png"
+                                   Aspect="AspectFill" />
+                        </Grid>
+                    </Frame>
+
+                    <!-- Full Name -->
+                    <Label x:Name="ProfileFullName"
+       Text="Full Name"
+       FontSize="16"
+       TextColor="#FFFFFF"
+       HorizontalOptions="Center"/>
+
+                    <!-- User Type -->
+                    <Label x:Name="ProfileUserType"
+       Text="User Type"
+       FontSize="14"
+       TextColor="#A0A0A0"
+       HorizontalOptions="Center"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="5">
+                        <Label x:Name="ProfileContactNumber" 
+                               Text="{Binding ContactNumber}" 
+                               FontSize="16" 
+                               TextColor="#E0E0E0"/>
+                        <ImageButton Source="edit_icon.png"
+             BackgroundColor="Transparent"
+             WidthRequest="20"
+             HeightRequest="20"
+             Clicked="OnEditContactClicked"/>
+
+                    </StackLayout>
+                    <Button x:Name="UploadProfileButton" 
+                            Text="Upload Profile Picture" 
+                            BackgroundColor="#FF3333" 
+                            TextColor="#FFFFFF" 
+                            CornerRadius="10" 
+                            Padding="10,5"
+                            Clicked="OnUploadProfileButtonClicked"/>
+                </StackLayout>
+
+                <Label Text="Residents Command Center" 
+                       FontSize="23" 
+                       FontAttributes="Bold" 
+                       TextColor="#FF3333" 
+                       HorizontalOptions="Center"/>
+                <ListView x:Name="MenuListView" 
+                          BackgroundColor="Transparent" 
+                          SeparatorColor="#FF3333" 
+                          ItemSelected="MenuItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Padding="10">
+                                    <Label Text="{Binding Icon}" FontSize="20" VerticalOptions="Center"/>
+                                    <Label Text="{Binding Title}" FontSize="18" TextColor="#FFFFFF" VerticalOptions="Center" Margin="10,0,0,0"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+
+    <!-- Detail Page (Initially Empty, Set Programmatically) -->
+    <FlyoutPage.Detail>
+        <ContentPage BackgroundColor="#0D1B2A">
+            <StackLayout>
+                <Label Text="Select an option from the menu" 
+                       FontSize="20" 
+                       TextColor="#778DA9" 
+                       HorizontalOptions="CenterAndExpand" 
+                       VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </ContentPage>
+    </FlyoutPage.Detail>
+</FlyoutPage>

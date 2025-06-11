@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.LGUSendNotificationPage"
+             BackgroundColor="#121212">
+    <StackLayout Padding="20" Spacing="15">
+
+        <!-- HEADER -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Image Source="emergencynotification.png" HeightRequest="30" WidthRequest="30"/>
+            <Label Text=" Send Notification" FontSize="26" FontAttributes="Bold"
+                   TextColor="White" VerticalOptions="Center"/>
+        </StackLayout>
+
+        <Label Text="Compose a message and send it to the selected recipients."
+               FontSize="16" TextColor="Gray" HorizontalOptions="Center" Padding="0,10,0,20"/>
+
+        <!-- RECIPIENT DROPDOWN -->
+        <Frame Padding="10" CornerRadius="10" BackgroundColor="#1E1E1E">
+            <Picker x:Name="recipientPicker" 
+                    Title="Select Recipients" 
+                    TitleColor="#AAAAAA" 
+                TextColor="#FFFFFF"
+                BackgroundColor="Transparent">
+                <Picker.Items>
+                    <x:String>All Users</x:String>
+                    <x:String>Residents</x:String>
+                    <x:String>Authorities</x:String>
+                </Picker.Items>
+            </Picker>
+        </Frame>
+
+        <!-- MESSAGE INPUT -->
+        <Frame Padding="10" CornerRadius="10" BackgroundColor="#1E1E1E">
+            <Editor x:Name="notificationEditor" 
+                    Placeholder="Enter your notification message..."
+                    PlaceholderColor="#AAAAAA" 
+                TextColor="#FFFFFF"
+                HeightRequest="100" 
+                    BackgroundColor="Transparent"/>
+        </Frame>
+
+        <!-- SEND BUTTON -->
+        <Button Text="Send Notification"
+                BackgroundColor="#D32F2F" 
+                TextColor="White" 
+                FontAttributes="Bold"
+                CornerRadius="10" 
+                HeightRequest="50"
+                Clicked="OnSendNotificationClicked"/>
+
+        <Button Text="View Sent Notifications"
+                BackgroundColor="#D32F2F" 
+                TextColor="White" 
+                FontAttributes="Bold"
+                CornerRadius="10" 
+                HeightRequest="50"
+                Clicked="Button_Clicked"/>
+
+    </StackLayout>
+</ContentPage>

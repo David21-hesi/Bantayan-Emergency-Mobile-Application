@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.AboutPage"
+             BackgroundColor="#121212">
+
+    <ContentPage.Content>
+        <Grid>
+            <!-- Define layout rows: Row 0 for Guest Access, Row 1 for the rest -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Fixed Guest Access Header -->
+            <Grid Grid.Row="0"
+                  Padding="20,10"
+                  BackgroundColor="#121212">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Grid.Column="1"
+                             Orientation="Horizontal"
+                             HorizontalOptions="End"
+                             VerticalOptions="Start"
+                             Spacing="5">
+                    <Label Text="Use the App as Guest"
+                           FontSize="14"
+                           TextColor="White"
+                           VerticalOptions="Center"/>
+                    <Button Text="Use Now"
+                            FontSize="14"
+                            BackgroundColor="#FF5252"
+                            TextColor="White"
+                            Padding="10,5"
+                            CornerRadius="8"
+                            Clicked="OnGuestUseClicked"/>
+                </StackLayout>
+            </Grid>
+
+            <!-- Scrollable Content Below -->
+            <ScrollView Grid.Row="1">
+                <StackLayout Padding="20" Spacing="25">
+
+                    <!-- App Header -->
+                    <Frame BackgroundColor="#1E1E1E" CornerRadius="15" Padding="20" HasShadow="True">
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                            <Image Source="BANTAYAN.png" 
+                                   HeightRequest="100" 
+                                   WidthRequest="1000" 
+                                   Aspect="AspectFill" 
+                                   HorizontalOptions="Fill" />
+
+                            <Label Text="Bantayan Emergency App"
+                                   FontSize="26" FontAttributes="Bold"
+                                   TextColor="#FF5252"
+                                   HorizontalOptions="Center"/>
+
+                            <Label Text="Your safety, our priority."
+                                   FontSize="16" TextColor="White"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Overview Section -->
+                    <Frame BackgroundColor="#1E1E1E" CornerRadius="15" Padding="20" HasShadow="True">
+                        <StackLayout Spacing="10">
+                            <Label Text="Overview" FontSize="22" FontAttributes="Bold" TextColor="#FFAB40"/>
+                            <Label Text="Bantayan Emergency App is designed to enhance community safety by providing real-time emergency notifications, updates, and a directory of essential services. Stay informed and stay safe!"
+                                   FontSize="16" TextColor="White"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Key Features Section -->
+                    <Frame BackgroundColor="#1E1E1E" CornerRadius="15" Padding="20" HasShadow="True">
+                        <StackLayout Spacing="10">
+                            <Label Text="Key Features" FontSize="22" FontAttributes="Bold" TextColor="#40C4FF"/>
+                            <StackLayout Spacing="8">
+                                <Label Text="✔️ Real-time emergency notifications" FontSize="16" TextColor="White"/>
+                                <Label Text="✔️ Live updates and alerts" FontSize="16" TextColor="White"/>
+                                <Label Text="✔️ Directory of essential services" FontSize="16" TextColor="White"/>
+                                <Label Text="✔️ Secure and easy access" FontSize="16" TextColor="White"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Mission Section -->
+                    <Frame BackgroundColor="#1E1E1E" CornerRadius="15" Padding="20" HasShadow="True">
+                        <StackLayout Spacing="10">
+                            <Label Text="Our Mission" FontSize="22" FontAttributes="Bold" TextColor="#FF4081"/>
+                            <Label Text="To provide fast and reliable emergency communication, ensuring the safety of the Bantayan community during critical situations."
+                                   FontSize="16" TextColor="White"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Contact Section -->
+                    <Frame BackgroundColor="#1E1E1E" CornerRadius="15" Padding="20" HasShadow="True">
+                        <StackLayout Spacing="10">
+                            <Label Text="Contact Us" FontSize="22" FontAttributes="Bold" TextColor="#FFD740"/>
+                            <Label Text="📧 Email: support@bantayanemergencyapp.com" FontSize="16" TextColor="White"/>
+                            <Label Text="📞 Phone: +63 912 345 6789" FontSize="16" TextColor="White"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Action Button -->
+                    <StackLayout Orientation="Vertical" Spacing="15">
+                        <Button Text="Go to Login"
+                                BackgroundColor="#FF5252"
+                                TextColor="White"
+                                FontAttributes="Bold"
+                                CornerRadius="10"
+                                HeightRequest="50"
+                                Clicked="OnGoToLoginClicked"/>
+                    </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.LGUNotificationsPage"
+             Title="Updates"
+             BackgroundColor="#0D1B2A">
+    <ContentPage.Resources>
+        <!-- Define reusable styles -->
+        <ResourceDictionary>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#1B263B" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BorderColor" Value="#FF3B30" />
+                <Setter Property="Padding" Value="15" />
+            </Style>
+            <Style x:Key="LabelHeaderStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#FFFFFF" />
+            </Style>
+            <Style x:Key="LabelSecondaryStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="#A6B1C9" />
+            </Style>
+            <Style x:Key="SearchBarStyle" TargetType="SearchBar">
+                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="PlaceholderColor" Value="#A6B1C9" />
+                <Setter Property="BackgroundColor" Value="#1B263B" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HeightRequest" Value="48" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="15">
+        <!-- Header -->
+        <Frame Style="{StaticResource FrameStyle}">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Image Source="siren.png" HeightRequest="24" WidthRequest="24" VerticalOptions="Center" />
+                <Label Text="Critical Alerts" Style="{StaticResource LabelHeaderStyle}" VerticalOptions="Center" Margin="8,0,0,0" />
+            </StackLayout>
+        </Frame>
+
+        <!-- Search Bar -->
+        <Frame Margin="0,10,0,10" CornerRadius="10" Padding="0" HasShadow="True" BackgroundColor="#1B263B" BorderColor="#FF3B30">
+            <SearchBar x:Name="searchEntry"
+                       Style="{StaticResource SearchBarStyle}"
+                       Placeholder="Search alerts..."
+                       TextChanged="OnSearchTextChanged" />
+        </Frame>
+
+        <!-- Notifications List -->
+        <ListView x:Name="NotificationsAuthoritiesListView"
+                  HasUnevenRows="True"
+                  BackgroundColor="Transparent"
+                  SeparatorVisibility="None"
+                  ItemsSource="{Binding FilteredNotificationsList}"
+                  Margin="0,5">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame Padding="15"
+                               Margin="0,8"
+                               CornerRadius="16"
+                               BackgroundColor="#1B263B"
+                               HasShadow="True"
+                               BorderColor="#FF3B30">
+                            <StackLayout Orientation="Horizontal">
+                                <!-- Notification Details -->
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Spacing="6">
+                                    <Label Text="{Binding Message}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="#FFFFFF" />
+                                    <Label Text="{Binding Timestamp}"
+                                           Style="{StaticResource LabelSecondaryStyle}" />
+                                </StackLayout>
+                                <!-- Delete Icon -->
+                                <ImageButton Source="delete.png"
+                                             HeightRequest="24"
+                                             WidthRequest="24"
+                                             VerticalOptions="Center"
+                                             HorizontalOptions="End"
+                                             BackgroundColor="Transparent"
+                                             CommandParameter="{Binding .}"
+                                             Clicked="OnDeleteClicked" />
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

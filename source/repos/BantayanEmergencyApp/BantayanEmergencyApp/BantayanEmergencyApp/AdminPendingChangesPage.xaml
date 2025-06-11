@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BantayanEmergencyApp"
+             x:Class="BantayanEmergencyApp.AdminPendingChangesPage"
+             Title="🚨 Pending Contact Changes"
+             BackgroundColor="#FFF5F5">
+
+    <StackLayout Padding="10" Spacing="10">
+
+        <!-- Header -->
+        <Frame BackgroundColor="#D32F2F"
+               CornerRadius="10"
+               Padding="15"
+               HasShadow="True">
+            <Label Text="Review Pending Contact Updates"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center" />
+        </Frame>
+
+        <!-- List of Pending Changes -->
+        <ListView x:Name="PendingChangesListView"
+                  HasUnevenRows="True"
+                  SeparatorColor="#E57373"
+                  ItemSelected="OnPendingChangeSelected"
+                  BackgroundColor="White">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame Padding="10" Margin="5" CornerRadius="10" BackgroundColor="#FFEBEE">
+                            <StackLayout Orientation="Horizontal" Spacing="15">
+                                <!-- Icon -->
+                                <Image Source="siren.png" WidthRequest="30" HeightRequest="30" />
+
+                                <!-- Text Info -->
+                                <StackLayout VerticalOptions="Center">
+                                    <Label Text="{Binding FullName}"
+                                           FontAttributes="Bold"
+                                           FontSize="16"
+                                           TextColor="#C62828" />
+                                    <Label Text="{Binding PendingContactNumber}"
+                                           FontSize="14"
+                                           TextColor="#6D4C41" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+
+</ContentPage>

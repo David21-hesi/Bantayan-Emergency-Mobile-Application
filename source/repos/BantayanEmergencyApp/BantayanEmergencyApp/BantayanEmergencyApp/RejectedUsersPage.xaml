@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.RejectedUsersPage"
+             Title="Rejected Users"
+             BackgroundColor="#1B1B1B">
+
+    <StackLayout Padding="20">
+
+        <!-- HEADER WITH ICON -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
+            <Image Source="fired.png" HeightRequest="40" WidthRequest="40"/>
+            <Label Text="Rejected Users" FontSize="28" FontAttributes="Bold" TextColor="#FF5252"/>
+        </StackLayout>
+
+        <Label Text="Below are users whose accounts have been rejected."
+               FontSize="16" TextColor="LightGray" HorizontalOptions="Center" Padding="5"/>
+
+        <!-- SEARCH BAR -->
+        <Frame BackgroundColor="White" Padding="10" Margin="10,10,10,10" CornerRadius="10">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="search.png" HeightRequest="20" WidthRequest="20" VerticalOptions="Center"/>
+                <Entry x:Name="searchEntry" Placeholder="Search Users..." TextColor="White" BackgroundColor="Transparent" TextChanged="OnSearchTextChanged"/>
+            </StackLayout>
+        </Frame>
+
+        <!-- USERS LIST -->
+        <ListView x:Name="rejectedUsersListView" HasUnevenRows="True" BackgroundColor="Transparent"
+                  SeparatorVisibility="None" ItemsSource="{Binding FilteredRejectedUsers}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame Padding="15" Margin="10" CornerRadius="20" BackgroundColor="#2C2C2C" HasShadow="True">
+                            <Grid ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <!-- Profile Picture -->
+                                    <ColumnDefinition Width="*"/>
+                                    <!-- User Info -->
+                                    <ColumnDefinition Width="Auto"/>
+                                    <!-- Delete Button -->
+                                </Grid.ColumnDefinitions>
+
+                                <!-- USER ICON -->
+                                <Frame Grid.Column="0" WidthRequest="50" HeightRequest="50" CornerRadius="25"
+                                       BackgroundColor="Black" Padding="5" VerticalOptions="Center">
+                                    <Image Source="user.png" HeightRequest="40" WidthRequest="40"/>
+                                </Frame>
+
+                                <!-- USER INFO -->
+                                <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                    <Label Text="{Binding FullName}" FontSize="20" FontAttributes="Bold" TextColor="White"/>
+                                    <Label Text="{Binding Email}" FontSize="16" TextColor="Gray"/>
+                                </StackLayout>
+
+                                <!-- DELETE BUTTON -->
+                                <Frame Grid.Column="2" BackgroundColor="Transparent" Padding="5" VerticalOptions="Center">
+                                    <ImageButton Source="deleterejected.png" HeightRequest="30" WidthRequest="30"
+                                                 BackgroundColor="Transparent" Clicked="OnDeleteUserClicked"
+                                                 BindingContext="{Binding .}"/>
+                                </Frame>
+
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+</ContentPage>

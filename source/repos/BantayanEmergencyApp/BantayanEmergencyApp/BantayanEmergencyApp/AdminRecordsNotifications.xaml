@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.AdminRecordsNotifications"
+             Title="Sent Notifications"
+             BackgroundColor="#121212">
+
+    <StackLayout>
+        <!-- Header -->
+        <StackLayout BackgroundColor="#D32F2F" Padding="20" Spacing="10">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Image Source="emergencynotification.png" HeightRequest="35" WidthRequest="35" VerticalOptions="Center"/>
+                <Label Text="Sent Notifications" 
+                       FontSize="24" 
+                       FontAttributes="Bold" 
+                       TextColor="#FFFFFF" 
+                       VerticalOptions="Center" 
+                       Margin="10,0,0,0"/>
+            </StackLayout>
+            <Label Text="View all notifications sent to users" 
+                   FontSize="16" 
+                   TextColor="#FFFFFF" 
+                   Opacity="0.85" 
+                   HorizontalOptions="Center"/>
+        </StackLayout>
+
+        <!-- Standard Search Bar -->
+        <StackLayout Padding="10" Spacing="10">
+            <SearchBar x:Name="searchBar"
+                       Placeholder="Search by message..."
+                       PlaceholderColor="#888888"
+                       TextColor="#000000"
+                       BackgroundColor="#E5E5E5"
+                       HeightRequest="50"
+                       TextChanged="OnSearchTextChanged"/>
+        </StackLayout>
+
+        <!-- Scrollable Notifications List -->
+        <ScrollView>
+            <StackLayout>
+                <!-- No Notifications Message -->
+                <StackLayout x:Name="noNotificationsLayout"
+                             VerticalOptions="CenterAndExpand"
+                             HorizontalOptions="CenterAndExpand"
+                             Spacing="15"
+                             Padding="20"
+                             IsVisible="False">
+                    <Image Source="sad.png" 
+                           HeightRequest="100" 
+                           WidthRequest="100" 
+                           HorizontalOptions="Center"/>
+                    <Label Text="No Notifications Sent Yet"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#616161"
+                           HorizontalOptions="Center"/>
+                </StackLayout>
+
+                <!-- Notifications List -->
+                <ListView x:Name="notificationsListView" 
+                          HasUnevenRows="True" 
+                          BackgroundColor="Transparent" 
+                          SeparatorVisibility="None" 
+                          ItemsSource="{Binding FilteredNotifications}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Padding="15" 
+                                       Margin="10,5" 
+                                       CornerRadius="8" 
+                                       BackgroundColor="#1E1E1E" 
+                                       BorderColor="#E0E0E0" 
+                                       HasShadow="True">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Notification Details -->
+                                        <StackLayout Grid.Column="0" Spacing="10">
+                                            <!-- Message -->
+                                            <Label Text="{Binding Message}" 
+                                                   FontSize="16" 
+                                                   FontAttributes="Bold" 
+                                                   TextColor="#FFFFFF"
+                                                   LineBreakMode="WordWrap"/>
+
+                                            <!-- Recipient Group -->
+                                            <Label Text="{Binding RecipientGroup, StringFormat='To: {0}'}" 
+                                                   FontSize="14" 
+                                                   TextColor="#AAAAAA"/>
+
+                                            <!-- Timestamp -->
+                                            <Label Text="{Binding Timestamp}" 
+                                                   FontSize="12" 
+                                                   TextColor="#0288D1" 
+                                                   FontAttributes="Italic"/>
+                                        </StackLayout>
+
+                                        <!-- Delete Icon -->
+                                        <ImageButton Grid.Column="1"
+                                                     Source="delete.png"
+                                                     HeightRequest="30"
+                                                     WidthRequest="30"
+                                                     VerticalOptions="Start"
+                                                     HorizontalOptions="End"
+                                                     BackgroundColor="Transparent"
+                                                     CommandParameter="{Binding .}"
+                                                     Clicked="OnDeleteNotificationClicked"/>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.BannedUsersPage"
+             Title="Banned Users"
+             BackgroundColor="#1B1B1B">
+
+    <StackLayout Padding="20">
+
+        <!-- HEADER -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
+            <Image Source="unfollow.png" HeightRequest="40" WidthRequest="40"/>
+            <Label Text="Banned Users" FontSize="28" FontAttributes="Bold" TextColor="#FF5252"/>
+        </StackLayout>
+
+        <Label Text="List of users currently banned from logging in."
+               FontSize="16" TextColor="LightGray" HorizontalOptions="Center" Padding="5"/>
+
+        <!-- SEARCH BAR -->
+        <Frame BackgroundColor="White" Padding="10" CornerRadius="10" HasShadow="True">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="search.png" HeightRequest="24" WidthRequest="24" VerticalOptions="Center"/>
+                <Entry Placeholder="Search Users..." TextColor="Black" TextChanged="OnSearchTextChanged"/>
+            </StackLayout>
+        </Frame>
+
+        <!-- BANNED USERS LIST -->
+        <ListView x:Name="bannedUsersListView"
+                  HasUnevenRows="True"
+                  BackgroundColor="Transparent"
+                  SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame Padding="15" Margin="10"
+                               CornerRadius="15"
+                               BackgroundColor="White"
+                               HasShadow="True">
+
+                            <Grid ColumnDefinitions="60, *, Auto, Auto"
+                                  VerticalOptions="CenterAndExpand"
+                                  Padding="10, 0">
+
+                                <!-- USER ICON -->
+                                <Image Source="user.png" HeightRequest="50" WidthRequest="50" Grid.Column="0"/>
+
+                                <!-- USER INFO -->
+                                <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                    <Label Text="{Binding FullName}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="#212121"
+                                           LineBreakMode="TailTruncation"/>
+                                    <Label Text="{Binding UserType}"
+                                           FontSize="14"
+                                           TextColor="Gray"/>
+                                    <Label Text="{Binding RemainingTime}"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="Red"/>
+                                </StackLayout>
+
+                                <!-- UNBAN BUTTON -->
+                                <ImageButton Source="back.png"
+                                             HeightRequest="30" WidthRequest="30"
+                                             BackgroundColor="Transparent"
+                                             CommandParameter="{Binding .}"
+                                             Clicked="OnUnbanUserClicked"
+                                             Grid.Column="2"/>
+
+                                <!-- DELETE BUTTON -->
+                                <ImageButton Source="deleteuser.png"
+                                             HeightRequest="30" WidthRequest="30"
+                                             BackgroundColor="Transparent"
+                                             CommandParameter="{Binding .}"
+                                             Clicked="OnDeleteUserClicked"
+                                             Grid.Column="3"/>
+
+                            </Grid>
+
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

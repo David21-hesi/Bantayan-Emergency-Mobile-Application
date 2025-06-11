@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="BantayanEmergencyApp.AdminDashboardPage">
+
+    <!-- FLYOUT MENU (Left Sidebar) -->
+    <FlyoutPage.Flyout>
+        <ContentPage Title="Menu" BackgroundColor="#263238">
+            <StackLayout Padding="20">
+
+                <!-- ADMIN PROFILE HEADER -->
+                <Frame BackgroundColor="#37474F" Padding="20" CornerRadius="15" HasShadow="True">
+                    <StackLayout HorizontalOptions="Center" Spacing="10">
+                        <Image Source="admin1.png" HeightRequest="20" WidthRequest="20" />
+                        <Label Text="Admin Dashboard" FontSize="20" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+
+              <ScrollView>
+                    <!-- MENU OPTIONS -->
+                <StackLayout Spacing="15" Padding="10">
+                    <Button Text="🏠 Home" Clicked="OnHomeClicked" BackgroundColor="Transparent" TextColor="White" FontSize="15"/>
+                    <BoxView HeightRequest="1" BackgroundColor="Gray"/>
+                    <Button Text="🕒 Pending Users" Clicked="OnPendingUsersClicked" BackgroundColor="Transparent" TextColor="White" FontSize="15"/>
+                    <BoxView HeightRequest="1" BackgroundColor="Gray"/>
+                    <Button Text="✅ Approved Users" Clicked="OnApprovedUsersClicked" BackgroundColor="Transparent" TextColor="White" FontSize="15"/>
+                    <BoxView HeightRequest="1" BackgroundColor="Gray"/>
+                    <Button Text="❌ Rejected Users" Clicked="OnRejectedUsersClicked" BackgroundColor="Transparent" TextColor="White" FontSize="15"/>
+                    <BoxView HeightRequest="1" BackgroundColor="Gray"/>
+                    <Button Text="🔒 Banned Users" Clicked="OnBannedUserClicked" BackgroundColor="Transparent" TextColor="White" FontSize="15"/>
+                    <BoxView HeightRequest="1" BackgroundColor="Gray"/>
+                    <Button Text="🚨 Emergency Reports" Clicked="OnReportsClicked" BackgroundColor="Transparent" TextColor="White" FontSize="15"/>
+                    <BoxView HeightRequest="1" BackgroundColor="Gray"/>
+                    <Button Text="📢 Send Notifications" Clicked="OnNotificationsClicked" BackgroundColor="Transparent" TextColor="White" FontSize="15"/>
+                    <BoxView HeightRequest="1" BackgroundColor="Gray"/>
+                    <Button Text="🚪 Logout" Clicked="OnLogoutClicked" BackgroundColor="Transparent" TextColor="Red" FontAttributes="Bold" FontSize="15"/>
+                    <BoxView HeightRequest="1" BackgroundColor="Gray"/>
+                </StackLayout>
+              </ScrollView>
+            </StackLayout>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+
+    
+</FlyoutPage>

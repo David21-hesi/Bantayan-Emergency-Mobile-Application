@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="BantayanEmergencyApp.LGUPage"
+            Title="LGU Emergency Command"
+            BackgroundColor="#0D1B2A"
+            BarBackgroundColor="#FF3333"
+            BarTextColor="#FFFFFF">
+
+    <!-- 🚨 Emergency Reports Tab -->
+    <ContentPage Title="🚨Reports" BackgroundColor="#0D1B2A">
+        <StackLayout>
+            <!-- Fixed Header Section -->
+            <StackLayout Padding="15,15,15,0">
+                <Frame BackgroundColor="#1B263B" CornerRadius="15" Padding="15" HasShadow="True">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Image Source="siren.png" HeightRequest="25" WidthRequest="25"/>
+                        <Label Text=" EMERGENCY REPORTS" FontSize="26" FontAttributes="Bold"
+                           TextColor="#FF3333" VerticalOptions="Center" Margin="10,0,0,0"/>
+                    </StackLayout>
+                </Frame>
+
+                <Label Text="Real-time emergency submissions" 
+                   FontSize="16" TextColor="#778DA9" HorizontalOptions="Center" Padding="0,10,0,20"/>
+            </StackLayout>
+
+            <!-- Scrollable Reports List -->
+            <ScrollView>
+                <ListView x:Name="reportsLGUListView" 
+                      HasUnevenRows="True" 
+                      BackgroundColor="Transparent"
+                      SeparatorVisibility="Default" 
+                      SeparatorColor="#FF3333" 
+                      ItemsSource="{Binding ReportsList}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Padding="15" 
+                                   Margin="5,10" 
+                                   CornerRadius="20" 
+                                   HasShadow="True"
+                                   BackgroundColor="#1B263B">
+                                    <StackLayout>
+                                        <!-- Collapsible Content -->
+                                        <StackLayout>
+                                            <!-- Clickable Header -->
+                                            <Grid ColumnSpacing="15" Padding="0,0,0,10">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding ToggleExpandCommand}"/>
+                                                </Grid.GestureRecognizers>
+
+                                                <StackLayout Grid.Column="0" VerticalOptions="Center">
+                                                    <Label Text="{Binding FullName}" 
+                                                       FontSize="20" 
+                                                       FontAttributes="Bold"
+                                                       TextColor="#FFFFFF"/>
+                                                    <Label Text="{Binding ContactNumber}" 
+                                                       FontSize="14" 
+                                                       TextColor="#778DA9"/>
+                                                </StackLayout>
+
+                                                <Frame Grid.Column="1" 
+                                                   Padding="8,4" 
+                                                   CornerRadius="15"
+                                                   BackgroundColor="{Binding StatusColor}">
+                                                    <Label Text="{Binding Status}" 
+                                                       FontSize="14" 
+                                                       FontAttributes="Bold"
+                                                       TextColor="#FFFFFF"/>
+                                                </Frame>
+                                            </Grid>
+
+                                            <!-- Expandable Details -->
+                                            <StackLayout IsVisible="{Binding IsExpanded}" Spacing="10">
+                                                <!-- INCIDENT DETAILS -->
+                                                <Frame BackgroundColor="#0D1B2A" 
+                                                   CornerRadius="10" 
+                                                   Padding="10">
+                                                    <StackLayout Spacing="5">
+                                                        <Label Text="{Binding IncidentType}" 
+                                                           FontSize="22" 
+                                                           FontAttributes="Bold"
+                                                           TextColor="#FF3333"/>
+                                                        <Label Text="{Binding Location}" 
+                                                           FontSize="16" 
+                                                           TextColor="#E0E1DD"/>
+                                                        <Label Text="{Binding Description}" 
+                                                           FontSize="14" 
+                                                           TextColor="#778DA9"/>
+                                                        <Label Text="{Binding Timestamp, StringFormat='Reported: {0:MMMM dd, yyyy h:mmtt}'}"
+                                                           FontSize="12" 
+                                                           TextColor="#FF6666"/>
+                                                    </StackLayout>
+                                                </Frame>
+
+                                                <!-- INCIDENT IMAGE -->
+                                                <Frame Padding="5" 
+                                                   Margin="0,10" 
+                                                   CornerRadius="15" 
+                                                   BackgroundColor="#000000">
+                                                    <Image Source="{Binding ImageUrl}" 
+                                                       HeightRequest="200"
+                                                       Aspect="AspectFill" 
+                                                       Opacity="0.9"/>
+                                                </Frame>
+
+                                                <!-- ACTION BUTTONS -->
+                                                <Grid ColumnSpacing="10" Padding="0,15">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Button Grid.Column="0" 
+                                                        Text="ACKNOWLEDGE" 
+                                                        BackgroundColor="#FFA500"
+                                                        TextColor="#FFFFFF" 
+                                                        FontSize="12" 
+                                                        CornerRadius="15" 
+                                                        Padding="5"
+                                                        CommandParameter="{Binding ReportId}" 
+                                                        Clicked="OnAcknowledgeClicked"/>
+                                                    <Button Grid.Column="1" 
+                                                        Text="IN PROGRESS" 
+                                                        BackgroundColor="#1E90FF"
+                                                        TextColor="#FFFFFF" 
+                                                        FontSize="14" 
+                                                        CornerRadius="15" 
+                                                        Padding="10"
+                                                        CommandParameter="{Binding ReportId}" 
+                                                        Clicked="OnInProgressClicked"/>
+                                                    <Button Grid.Column="2" 
+                                                        Text="RESOLVED" 
+                                                        BackgroundColor="#00CC00"
+                                                        TextColor="#FFFFFF" 
+                                                        FontSize="14" 
+                                                        CornerRadius="15" 
+                                                        Padding="10"
+                                                        CommandParameter="{Binding ReportId}" 
+                                                        Clicked="OnResolvedClicked"/>
+                                                </Grid>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage>
+
+    <!-- 🔔 Critical Updates Tab -->
+    <ContentPage Title="🔔 Updates" BackgroundColor="#0D1B2A" IconImageSource="bell.png">
+        <StackLayout Padding="15">
+            <Frame BackgroundColor="#1B263B" CornerRadius="15" Padding="15" HasShadow="True">
+                <Label Text="🚨 CRITICAL ALERTS" FontSize="28" FontAttributes="Bold"
+                       TextColor="#FF3333" HorizontalOptions="Center"/>
+            </Frame>
+
+            <ListView x:Name="NotificationsAuthoritiesListView" HasUnevenRows="True"
+                      BackgroundColor="Transparent" SeparatorColor="#FF3333">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="15" CornerRadius="15" Margin="0,10" BackgroundColor="#1B263B"
+                                   HasShadow="True">
+                                <StackLayout>
+                                    <Label Text="{Binding Message}" FontSize="18" TextColor="#FFFFFF"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding Timestamp}" FontSize="14" TextColor="#FF6666"/>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage>
+
+    <!-- 📣 Send Report Tab -->
+    <ContentPage Title="📣 Alert" BackgroundColor="#0D1B2A" IconImageSource="megaphone.png">
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="15">
+                <!-- Header -->
+                <Frame BackgroundColor="#FF3333" CornerRadius="20" Padding="15" HasShadow="True">
+                    <Label Text="🚨 EMERGENCY BROADCAST" FontSize="24" FontAttributes="Bold"
+                           TextColor="#FFFFFF" HorizontalOptions="Center"/>
+                </Frame>
+
+                <!-- Authority Selection -->
+                <Frame Padding="15" CornerRadius="15" BackgroundColor="#1B263B" HasShadow="True">
+                    <StackLayout>
+                        <Label Text="📡 Notify Authority" FontSize="18" FontAttributes="Bold" TextColor="#FF3333"/>
+                        <Picker x:Name="AuthorityPicker" Title="Select Authority" TextColor="#FFFFFF"
+                                TitleColor="#778DA9" BackgroundColor="#0D1B2A" FontSize="16">
+                            <Picker.Items>
+                                <x:String>Police</x:String>
+                                <x:String>Fire Department</x:String>
+                                <x:String>Medical Team</x:String>
+                                <x:String>Banelco</x:String>
+                                <x:String>All Authorities</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Incident Type -->
+                <Frame Padding="15" CornerRadius="15" BackgroundColor="#1B263B" HasShadow="True">
+                    <StackLayout>
+                        <Label Text="🚨 Incident Type" FontSize="18" FontAttributes="Bold" TextColor="#FF3333"/>
+                        <Picker x:Name="IncidentPicker" Title="Select Incident" TextColor="#FFFFFF"
+                                TitleColor="#778DA9" BackgroundColor="#0D1B2A" FontSize="16">
+                            <Picker.Items>
+                                <x:String>Fire</x:String>
+                                <x:String>Medical Emergency</x:String>
+                                <x:String>Crime</x:String>
+                                <x:String>Power Outage</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Location -->
+                <Frame Padding="15" CornerRadius="15" BackgroundColor="#1B263B" HasShadow="True">
+                    <StackLayout>
+                        <Label Text="📍 Incident Location" FontSize="18" FontAttributes="Bold" TextColor="#FF3333"/>
+                        <Picker x:Name="LocationPicker" Title="Select Location" TextColor="#FFFFFF"
+                                TitleColor="#778DA9" BackgroundColor="#0D1B2A" FontSize="16">
+                            <Picker.Items>
+                                <x:String>Atop-Atop</x:String>
+                                <x:String>Baigad</x:String>
+                                <x:String>Bantigue</x:String>
+                                <x:String>Baod</x:String>
+                                <x:String>Binaobao</x:String>
+                                <x:String>Botigues</x:String>
+                                <x:String>Doong</x:String>
+                                <x:String>Guiwanon</x:String>
+                                <x:String>Hilotongan</x:String>
+                                <x:String>Kabac</x:String>
+                                <x:String>Kabangbang</x:String>
+                                <x:String>Kampingganon</x:String>
+                                <x:String>Kangkaibe</x:String>
+                                <x:String>Lipayran</x:String>
+                                <x:String>LuyongBayBay</x:String>
+                                <x:String>Mojon</x:String>
+                                <x:String>Oboob</x:String>
+                                <x:String>Patao</x:String>
+                                <x:String>Putian</x:String>
+                                <x:String>Sillion</x:String>
+                                <x:String>Suba</x:String>
+                                <x:String>Sulangan</x:String>
+                                <x:String>Sungko</x:String>
+                                <x:String>Tamiao</x:String>
+                                <x:String>Ticad</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Description -->
+                <Frame Padding="15" CornerRadius="15" BackgroundColor="#1B263B" HasShadow="True">
+                    <StackLayout>
+                        <Label Text="📝 Incident Details" FontSize="18" FontAttributes="Bold" TextColor="#FF3333"/>
+                        <Editor x:Name="IncidentDescription" Placeholder="Enter critical details..."
+                                HeightRequest="120" TextColor="#FFFFFF" BackgroundColor="#0D1B2A"
+                                PlaceholderColor="#778DA9" FontSize="16"/>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Image Upload -->
+                <Frame Padding="15" CornerRadius="15" BackgroundColor="#1B263B" HasShadow="True">
+                    <StackLayout>
+                        <Label Text="📸 Emergency Evidence" FontSize="18" FontAttributes="Bold" TextColor="#FF3333"/>
+                        <ImageButton x:Name="validIdImage" Source="camera_emergency.png"
+                                     HeightRequest="180" WidthRequest="180" 
+                                     CornerRadius="15" BackgroundColor="#0D1B2A"
+                                     Clicked="validIdImage_Clicked"/>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Action Buttons -->
+                <Button Text="🚨 BROADCAST ALERT" BackgroundColor="#FF3333" TextColor="#FFFFFF"
+                        FontSize="18" FontAttributes="Bold" CornerRadius="15" HeightRequest="60"
+                        Clicked="SubmitEmergencyReport"/>
+                <Button Text="📋 MY REPORTS" BackgroundColor="#1E90FF" TextColor="#FFFFFF"
+                        FontSize="18" FontAttributes="Bold" CornerRadius="15" HeightRequest="60"
+                        Clicked="ViewMyReports_Clicked"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage>
+</TabbedPage>

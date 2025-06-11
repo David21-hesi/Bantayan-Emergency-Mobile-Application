@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.ProfilePage"
+             Title="Profile"
+             BackgroundColor="#ECEFF1">
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+            
+            <Frame BackgroundColor="#B71C1C" CornerRadius="10" Padding="15" HasShadow="True">
+                <Label Text="MY PROFILE" 
+                       FontSize="22" 
+                       FontAttributes="Bold" 
+                       TextColor="#FFFFFF" 
+                       HorizontalOptions="Center"/>
+            </Frame>
+
+            <Frame Padding="15" CornerRadius="8" BackgroundColor="#FFFFFF" HasShadow="True">
+                <StackLayout Spacing="10">
+                    <Label Text="Full Name:" FontSize="16" FontAttributes="Bold" TextColor="#212121"/>
+                    <Label x:Name="FullNameLabel" FontSize="16" TextColor="#212121"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Padding="15" CornerRadius="8" BackgroundColor="#FFFFFF" HasShadow="True">
+                <StackLayout Spacing="10">
+                    <Label Text="Email:" FontSize="16" FontAttributes="Bold" TextColor="#212121"/>
+                    <Label x:Name="EmailLabel" FontSize="16" TextColor="#212121"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Padding="15" CornerRadius="8" BackgroundColor="#FFFFFF" HasShadow="True">
+                <StackLayout Spacing="10">
+                    <Label Text="Address:" FontSize="16" FontAttributes="Bold" TextColor="#212121"/>
+                    <Label x:Name="AddressLabel" FontSize="16" TextColor="#212121" IsVisible="{Binding IsNotEditing}"/>
+                    <Entry x:Name="AddressEntry" FontSize="16" TextColor="#212121" IsVisible="{Binding IsEditing}" Placeholder="Enter new address"/>
+                    <Button Text="Change Address" x:Name="ChangeAddressButton" 
+                            BackgroundColor="#B71C1C" TextColor="#FFFFFF" CornerRadius="10" 
+                            FontSize="16" FontAttributes="Bold" Clicked="ToggleEditAddress"/>
+                    <Button Text="Save Address" x:Name="SaveAddressButton" 
+                            BackgroundColor="#1976D2" TextColor="#FFFFFF" CornerRadius="10" 
+                            FontSize="16" FontAttributes="Bold" Clicked="SaveAddress" IsVisible="{Binding IsEditing}"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Padding="15" CornerRadius="8" BackgroundColor="#FFFFFF" HasShadow="True">
+                <StackLayout Spacing="10">
+                    <Label Text="Contact Number:" FontSize="16" FontAttributes="Bold" TextColor="#212121"/>
+                    <Label x:Name="ContactNumberLabel" FontSize="16" TextColor="#212121" IsVisible="{Binding IsNotEditing}"/>
+                    <Entry x:Name="ContactNumberEntry" FontSize="16" TextColor="#212121" IsVisible="{Binding IsEditing}" Placeholder="Enter new contact number" Keyboard="Telephone"/>
+                    <Button Text="Change Number" x:Name="ChangeNumberButton" 
+                            BackgroundColor="#B71C1C" TextColor="#FFFFFF" CornerRadius="10" 
+                            FontSize="16" FontAttributes="Bold" Clicked="ToggleEditNumber"/>
+                    <Button Text="Save Number" x:Name="SaveNumberButton" 
+                            BackgroundColor="#1976D2" TextColor="#FFFFFF" CornerRadius="10" 
+                            FontSize="16" FontAttributes="Bold" Clicked="SaveNumber" IsVisible="{Binding IsEditing}"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Padding="15" CornerRadius="8" BackgroundColor="#FFFFFF" HasShadow="True">
+                <StackLayout Spacing="10">
+                    <Label Text="User Type:" FontSize="16" FontAttributes="Bold" TextColor="#212121"/>
+                    <Label x:Name="UserTypeLabel" FontSize="16" TextColor="#212121"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Padding="15" CornerRadius="8" BackgroundColor="#FFFFFF" HasShadow="True">
+                <StackLayout Spacing="10">
+                    <Label Text="Status:" FontSize="16" FontAttributes="Bold" TextColor="#212121"/>
+                    <Label x:Name="StatusLabel" FontSize="16" TextColor="#212121"/>
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

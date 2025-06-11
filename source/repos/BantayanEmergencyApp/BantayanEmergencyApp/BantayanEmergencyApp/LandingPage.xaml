@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BantayanEmergencyApp.LandingPage"
+             BackgroundColor="#1E1E1E">
+
+    <ContentPage.Resources>
+        <!-- Gradient Background -->
+        <Style TargetType="ContentPage">
+            <Setter Property="BackgroundImageSource" Value="gradient.jpg"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <!-- Animated Background -->
+            <BoxView BackgroundColor="#1E1E1E" Opacity="0.6"/>
+
+            <!-- Main Layout -->
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Spacing="30">
+
+                <!-- Emergency Logo with Glow -->
+                <Frame BackgroundColor="Transparent" HasShadow="False">
+                    <Image Source="BANTAYAN.png" 
+                           HeightRequest="180" 
+                           WidthRequest="180" 
+                           HorizontalOptions="Center">
+                        <Image.Triggers>
+                            <Trigger TargetType="Image" Property="IsVisible" Value="True">
+                                <Setter Property="Rotation" Value="0"/>
+                                <Setter Property="Scale" Value="1"/>
+                            </Trigger>
+                        </Image.Triggers>
+                    </Image>
+                </Frame>
+
+                <!-- Glowing Label -->
+                <Label Text="Bantayan Emergency App"
+                       FontSize="30" 
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="Center">
+                </Label>
+
+
+                
+                <ActivityIndicator IsRunning="True" 
+                                   Color="#F40505" 
+                                   Scale="2" 
+                                   HorizontalOptions="Center"/>
+
+                
+                <Label Text="Loading, please wait..." 
+                       FontSize="18" 
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       Opacity="0.8"
+                       HorizontalOptions="Center"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

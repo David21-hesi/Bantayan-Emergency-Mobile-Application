@@ -1,0 +1,26 @@
+# Ignore build artifacts
+[Bb]in/
+[Oo]bj/
+
+# User-specific files
+*.user
+*.suo
+*.userprefs
+
+# Xamarin/Android specific
+*.apk
+*.keystore
+*.pfx
+*.db
+*.json
+
+# Ignore compiled class files
+*.dll
+*.exe
+*.class
+*.pdb
+
+# Cache/temp files
+*.cache
+*.tmp
+*.log
